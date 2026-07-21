@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionsRouteImport } from './routes/collections'
@@ -16,6 +17,11 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CarsCarIdRouteImport } from './routes/cars.$carId'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InventoryRoute = InventoryRouteImport.update({
   id: '/inventory',
   path: '/inventory',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/inventory': typeof InventoryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/inventory': typeof InventoryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/inventory': typeof InventoryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/contact'
     | '/inventory'
+    | '/sitemap.xml'
     | '/cars/$carId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/contact'
     | '/inventory'
+    | '/sitemap.xml'
     | '/cars/$carId'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/contact'
     | '/inventory'
+    | '/sitemap.xml'
     | '/cars/$carId'
   fileRoutesById: FileRoutesById
 }
@@ -105,11 +117,19 @@ export interface RootRouteChildren {
   CollectionsRoute: typeof CollectionsRoute
   ContactRoute: typeof ContactRoute
   InventoryRoute: typeof InventoryRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CarsCarIdRoute: typeof CarsCarIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/inventory': {
       id: '/inventory'
       path: '/inventory'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionsRoute: CollectionsRoute,
   ContactRoute: ContactRoute,
   InventoryRoute: InventoryRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   CarsCarIdRoute: CarsCarIdRoute,
 }
 export const routeTree = rootRouteImport
