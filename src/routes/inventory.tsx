@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, X, SlidersHorizontal } from "lucide-react";
+import { CarCardSkeleton } from "@/components/car-card-skeleton";
 import {
   cars,
   allMakes,
@@ -30,9 +31,16 @@ export const Route = createFileRoute("/inventory")({
   head: () => ({
     meta: [
       { title: "Inventory — Vantedge Automotive" },
-      { name: "description", content: "Search and filter the Vantedge inventory by make, model, year, price, and fuel type." },
+      {
+        name: "description",
+        content:
+          "Search and filter the Vantedge inventory by make, model, year, price, and fuel type.",
+      },
       { property: "og:title", content: "Inventory — Vantedge Automotive" },
-      { property: "og:description", content: "Search and filter curated premium automobiles at Vantedge." },
+      {
+        property: "og:description",
+        content: "Search and filter curated premium automobiles at Vantedge.",
+      },
     ],
   }),
   component: Inventory,
@@ -42,6 +50,14 @@ function Inventory() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const [panelOpen, setPanelOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const t = setTimeout(() => setLoading(false), 280);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(search)]);
 
   const update = (patch: Partial<typeof search>) => {
     navigate({ search: (prev: typeof search) => ({ ...prev, ...patch }) });
@@ -72,7 +88,8 @@ function Inventory() {
   const list = useMemo(() => {
     const q = search.q.trim().toLowerCase();
     return cars.filter((c) => {
-      if (q && !`${c.name} ${c.make} ${c.model} ${c.tagline}`.toLowerCase().includes(q)) return false;
+      if (q && !`${c.name} ${c.make} ${c.model} ${c.tagline}`.toLowerCase().includes(q))
+        return false;
       if (search.make && c.make !== search.make) return false;
       if (search.model && c.model !== search.model) return false;
       if (search.fuel && c.fuelType !== search.fuel) return false;
@@ -99,12 +116,18 @@ function Inventory() {
 
   const clearOne = (k: string) => {
     switch (k) {
-      case "q": return update({ q: "" });
-      case "make": return update({ make: "", model: "" });
-      case "model": return update({ model: "" });
-      case "fuel": return update({ fuel: "" });
-      case "year": return update({ yearMin: yearBounds.min, yearMax: yearBounds.max });
-      case "price": return update({ priceMin: priceBounds.min, priceMax: priceBounds.max });
+      case "q":
+        return update({ q: "" });
+      case "make":
+        return update({ make: "", model: "" });
+      case "model":
+        return update({ model: "" });
+      case "fuel":
+        return update({ fuel: "" });
+      case "year":
+        return update({ yearMin: yearBounds.min, yearMax: yearBounds.max });
+      case "price":
+        return update({ priceMin: priceBounds.min, priceMax: priceBounds.max });
     }
   };
 
@@ -118,9 +141,8 @@ function Inventory() {
             <span className="italic">Inventory.</span>
           </h1>
           <p className="mt-8 max-w-lg text-sm leading-relaxed text-silver">
-            Each vehicle in the Vantedge collection is inspected, documented, and
-            prepared by our master technicians. Viewing available in Los Angeles,
-            London, and Milan by appointment.
+            Each vehicle in the Vantedge collection is inspected, documented, and prepared by our
+            master technicians. Viewing available in Los Angeles, London, and Milan by appointment.
           </p>
         </div>
       </section>
@@ -129,7 +151,10 @@ function Inventory() {
       <section className="sticky top-[110px] z-30 border-y border-onyx/10 bg-ghost/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
           <div className="relative flex-1">
-            <Search className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-silver" strokeWidth={1.5} />
+            <Search
+              className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-silver"
+              strokeWidth={1.5}
+            />
             <input
               value={search.q}
               onChange={(e) => update({ q: e.target.value })}
@@ -146,7 +171,9 @@ function Inventory() {
             <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.5} />
             Filters
             {activeFilters.length > 0 && (
-              <span className={`ml-1 rounded-full px-1.5 py-0.5 text-[9px] ${panelOpen ? "bg-ghost text-onyx" : "bg-onyx text-ghost"}`}>
+              <span
+                className={`ml-1 rounded-full px-1.5 py-0.5 text-[9px] ${panelOpen ? "bg-ghost text-onyx" : "bg-onyx text-ghost"}`}
+              >
                 {activeFilters.length}
               </span>
             )}
@@ -251,10 +278,16 @@ function Inventory() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-16 pb-32">
-        {list.length > 0 ? (
+        {loading ? (
           <div className="grid grid-cols-1 gap-x-12 gap-y-24 md:grid-cols-2">
-            {list.map((car, i) => (
-              <CarCard key={car.id} car={car} offset={i % 2 === 1} />
+            {Array.from({ length: 4 }).map((_, i) => (
+              <CarCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : list.length > 0 ? (
+          <div className="grid grid-cols-1 gap-x-12 gap-y-24 md:grid-cols-2">
+            {list.map((car) => (
+              <CarCard key={car.id} car={car} />
             ))}
           </div>
         ) : (
@@ -300,7 +333,9 @@ function FilterSelect({
       >
         <option value="">Any {label}</option>
         {options.map((o) => (
-          <option key={o} value={o}>{o}</option>
+          <option key={o} value={o}>
+            {o}
+          </option>
         ))}
       </select>
     </div>

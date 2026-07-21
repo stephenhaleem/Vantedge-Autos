@@ -9,16 +9,20 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { CarListsProvider } from "@/lib/use-car-lists";
+import { CompareBar } from "@/components/compare-bar";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-ghost px-4 pt-32 pb-16">
       <div className="max-w-md text-center">
         <p className="text-[10px] uppercase tracking-[0.3em] text-silver">Error 404</p>
-        <h1 className="mt-4 font-heading text-7xl font-light tracking-tighter text-onyx">Off-Road</h1>
+        <h1 className="mt-4 font-heading text-7xl font-light tracking-tighter text-onyx">
+          Off-Road
+        </h1>
         <p className="mt-6 text-sm text-silver">
           This route doesn't appear on our map. Return to the showroom.
         </p>
@@ -50,7 +54,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-3 text-sm text-silver">Try refreshing or head back home.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="inline-flex h-12 items-center justify-center bg-onyx px-8 text-[11px] font-medium uppercase tracking-[0.25em] text-ghost hover:bg-onyx/85"
           >
             Try again
@@ -73,10 +80,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Vantedge Automotive — Premium Cars, Curated" },
-      { name: "description", content: "Vantedge curates a private collection of premium performance, electric, heritage, and hypercars. Viewing by appointment." },
+      {
+        name: "description",
+        content:
+          "Vantedge curates a private collection of premium performance, electric, heritage, and hypercars. Viewing by appointment.",
+      },
       { name: "author", content: "Vantedge Automotive" },
       { property: "og:title", content: "Vantedge Automotive — Premium Cars, Curated" },
-      { property: "og:description", content: "A curated collection of premium performance, electric, heritage, and hypercars." },
+      {
+        property: "og:description",
+        content: "A curated collection of premium performance, electric, heritage, and hypercars.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -115,11 +129,14 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteHeader />
-      <main className="pt-[110px]">
-        <Outlet />
-      </main>
-      <SiteFooter />
+      <CarListsProvider>
+        <SiteHeader />
+        <main className="pt-[110px]">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <CompareBar />
+      </CarListsProvider>
     </QueryClientProvider>
   );
 }

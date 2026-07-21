@@ -3,6 +3,9 @@ import horizon from "@/assets/car-horizon.jpg";
 import silverstone from "@/assets/car-silverstone.jpg";
 import ignition from "@/assets/car-ignition.jpg";
 import aeon from "@/assets/hero-aeon.jpg";
+import m3coupe from "@/assets/m3coupe.jpg";
+import craftsmanship from "@/assets/craftsmanship.jpg";
+import showroom from "@/assets/showroom.jpg";
 
 export type FuelType = "Petrol" | "Electric" | "Hybrid" | "Diesel";
 export type Category = "Electric" | "Performance" | "Heritage" | "Hypercar";
@@ -18,6 +21,7 @@ export type Car = {
   fuelType: FuelType;
   price: number;
   image: string;
+  images: string[];
   specs: {
     engine: string;
     power: string;
@@ -43,6 +47,7 @@ export const cars: Car[] = [
     fuelType: "Petrol",
     price: 215900,
     image: obsidian,
+    images: [obsidian, craftsmanship, showroom],
     specs: {
       engine: "4.0L V8 Bi-Turbo",
       power: "620 HP",
@@ -67,6 +72,7 @@ export const cars: Car[] = [
     fuelType: "Electric",
     price: 122000,
     image: horizon,
+    images: [horizon, showroom],
     specs: {
       engine: "Dual Permanent Magnet Motors",
       power: "560 HP",
@@ -91,6 +97,7 @@ export const cars: Car[] = [
     fuelType: "Petrol",
     price: 345000,
     image: silverstone,
+    images: [silverstone, showroom],
     specs: {
       engine: "3.8L Naturally Aspirated Flat-Six",
       power: "420 HP",
@@ -115,6 +122,7 @@ export const cars: Car[] = [
     fuelType: "Hybrid",
     price: 1200000,
     image: ignition,
+    images: [ignition, showroom],
     specs: {
       engine: "4.0L Twin-Turbo V8 + 3 Electric Motors",
       power: "1,200 HP",
@@ -139,6 +147,7 @@ export const cars: Car[] = [
     fuelType: "Petrol",
     price: 268000,
     image: obsidian,
+    images: [obsidian, showroom],
     specs: {
       engine: "4.0L V8 Bi-Turbo",
       power: "720 HP",
@@ -163,6 +172,7 @@ export const cars: Car[] = [
     fuelType: "Electric",
     price: 158000,
     image: aeon,
+    images: [aeon, showroom],
     specs: {
       engine: "Dual Permanent Magnet Motors",
       power: "610 HP",
@@ -187,6 +197,7 @@ export const cars: Car[] = [
     fuelType: "Petrol",
     price: 285000,
     image: silverstone,
+    images: [silverstone, showroom],
     specs: {
       engine: "5.3L V12",
       power: "310 HP",
@@ -202,12 +213,16 @@ export const cars: Car[] = [
   },
 ];
 
-export const heroImage = aeon;
+export const heroImage = m3coupe;
 
 export const findCar = (id: string) => cars.find((c) => c.id === id);
 
 export const formatPrice = (n: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);
 
 export const allMakes = Array.from(new Set(cars.map((c) => c.make))).sort();
 export const allModels = Array.from(new Set(cars.map((c) => c.model))).sort();

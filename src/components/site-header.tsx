@@ -1,15 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useCarLists } from "@/lib/use-car-lists";
+import { Heart, GitCompareArrows } from "lucide-react";
 
 const links = [
   { to: "/inventory", label: "Inventory" },
   { to: "/collections", label: "Collections" },
   { to: "/about", label: "Atelier" },
+  { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Showrooms" },
 ] as const;
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const { shortlistIds, compareIds } = useCarLists();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -20,26 +24,8 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* Marquee ticker */}
-      <div className="fixed top-0 z-[60] w-full overflow-hidden border-b border-onyx/10 bg-onyx text-ghost">
-        <div className="flex whitespace-nowrap animate-marquee py-1.5 gap-16 will-change-transform">
-          {Array.from({ length: 2 }).map((_, i) => (
-            <div key={i} className="flex shrink-0 gap-16 items-center pr-16">
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium">New Arrival — 1974 Carrera RS 3.0</span>
-              <span className="text-[10px] tracking-[0.3em] text-silver">◆</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium">Worldwide Enclosed Shipping</span>
-              <span className="text-[10px] tracking-[0.3em] text-silver">◆</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium">Private Viewings By Appointment</span>
-              <span className="text-[10px] tracking-[0.3em] text-silver">◆</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium">Est. Los Angeles · London · Milan</span>
-              <span className="text-[10px] tracking-[0.3em] text-silver">◆</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <nav
-        className={`fixed top-[30px] z-50 w-full border-b transition-all duration-500 ${
+        className={`fixed top-[0px] z-50 w-full border-b transition-all duration-500 ${
           scrolled
             ? "border-onyx/10 bg-ghost/85 backdrop-blur-xl"
             : "border-transparent bg-ghost/60 backdrop-blur-md"
@@ -73,11 +59,30 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-silver">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-onyx opacity-40" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-onyx" />
-              </span>
-              Concierge Online
+              <Link
+                to="/shortlist"
+                className="relative flex h-9 w-9 items-center justify-center text-onyx/80 hover:text-onyx"
+                aria-label="Shortlist"
+              >
+                <Heart className="h-4 w-4" strokeWidth={1.5} />
+                {shortlistIds.length > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-onyx text-[9px] text-ghost">
+                    {shortlistIds.length}
+                  </span>
+                )}
+              </Link>
+              <Link
+                to="/compare"
+                className="relative flex h-9 w-9 items-center justify-center text-onyx/80 hover:text-onyx"
+                aria-label="Compare"
+              >
+                <GitCompareArrows className="h-4 w-4" strokeWidth={1.5} />
+                {compareIds.length > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-onyx text-[9px] text-ghost">
+                    {compareIds.length}
+                  </span>
+                )}
+              </Link>
             </div>
             <Link
               to="/contact"

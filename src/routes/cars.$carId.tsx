@@ -1,5 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { cars, findCar, formatPrice } from "@/lib/cars";
+import { useMemo } from "react";
+import { Heart } from "lucide-react";
+import { ImageGallery } from "@/components/image-gallery";
+import { useCarLists } from "@/lib/use-car-lists";
 
 export const Route = createFileRoute("/cars/$carId")({
   loader: ({ params }) => {
@@ -9,7 +13,9 @@ export const Route = createFileRoute("/cars/$carId")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Vehicle Not Found — Vantedge" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Vehicle Not Found — Vantedge" }, { name: "robots", content: "noindex" }],
+      };
     }
     const { car } = loaderData;
     return {
@@ -26,7 +32,20 @@ export const Route = createFileRoute("/cars/$carId")({
 
 function CarDetail() {
   const { car } = Route.useLoaderData();
-  const others = cars.filter((c) => c.id !== car.id).slice(0, 2);
+  const { isShortlisted, toggleShortlist } = useCarLists();
+  const shortlisted = isShortlisted(car.id);
+
+  const others = useMemo(() => {
+    const sameCategory = cars.filter((c) => c.id !== car.id && c.category === car.category);
+    const priceBand = sameCategory.filter((c) => Math.abs(c.price - car.price) / car.price <= 0.35);
+    const pool =
+      priceBand.length >= 2
+        ? priceBand
+        : sameCategory.length >= 2
+          ? sameCategory
+          : cars.filter((c) => c.id !== car.id);
+    return pool.slice(0, 2);
+  }, [car]);
 
   const specs = [
     ["Engine", car.specs.engine],
@@ -44,9 +63,13 @@ function CarDetail() {
       {/* Breadcrumb */}
       <div className="mx-auto max-w-7xl px-6 pt-8">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-silver">
-          <Link to="/" className="hover:text-onyx">Home</Link>
+          <Link to="/" className="hover:text-onyx">
+            Home
+          </Link>
           <span>/</span>
-          <Link to="/inventory" className="hover:text-onyx">Inventory</Link>
+          <Link to="/inventory" className="hover:text-onyx">
+            Inventory
+          </Link>
           <span>/</span>
           <span className="text-onyx">{car.name}</span>
         </div>
@@ -54,30 +77,18 @@ function CarDetail() {
 
       {/* Hero image */}
       <section className="mx-auto max-w-7xl px-6 pt-8">
-        <div className="overflow-hidden">
-          <img
-            src={car.image}
-            alt={car.name}
-            width={1600}
-            height={1000}
-            className="aspect-[16/10] w-full object-cover animate-reveal"
-          />
-        </div>
+        <ImageGallery images={car.images} alt={car.name} />
       </section>
 
       {/* Title + sticky rail */}
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <p className="text-[10px] uppercase tracking-[0.35em] text-silver">
-              {car.category}
-            </p>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-silver">{car.category}</p>
             <h1 className="mt-4 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
               {car.name}
             </h1>
-            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-silver">
-              {car.tagline}
-            </p>
+            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-silver">{car.tagline}</p>
 
             <p className="mt-12 max-w-xl text-base leading-relaxed text-onyx/80">
               {car.description}
@@ -124,12 +135,33 @@ function CarDetail() {
                 >
                   Book a Viewing
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => toggleShortlist(car.id)}
+                  className="flex h-12 items-center justify-center gap-2 border border-onyx/15 text-[11px] font-medium uppercase tracking-[0.25em] hover:bg-onyx/5"
+                >
+                  <Heart
+                    className="h-3.5 w-3.5"
+                    fill={shortlisted ? "currentColor" : "none"}
+                    strokeWidth={1.5}
+                  />
+                  {shortlisted ? "Saved to Shortlist" : "Add to Shortlist"}
+                </button>
               </div>
 
               <div className="mt-10 space-y-3 border-t border-onyx/10 pt-8 text-[11px] text-silver">
-                <p className="flex justify-between"><span>Stock No.</span><span className="text-onyx">VA-{car.id.slice(0, 4).toUpperCase()}</span></p>
-                <p className="flex justify-between"><span>Location</span><span className="text-onyx">Los Angeles</span></p>
-                <p className="flex justify-between"><span>Status</span><span className="text-onyx">Available</span></p>
+                <p className="flex justify-between">
+                  <span>Stock No.</span>
+                  <span className="text-onyx">VA-{car.id.slice(0, 4).toUpperCase()}</span>
+                </p>
+                <p className="flex justify-between">
+                  <span>Location</span>
+                  <span className="text-onyx">Los Angeles</span>
+                </p>
+                <p className="flex justify-between">
+                  <span>Status</span>
+                  <span className="text-onyx">Available</span>
+                </p>
               </div>
             </div>
           </div>
@@ -143,18 +175,16 @@ function CarDetail() {
             <h2 className="font-heading text-3xl font-light tracking-tight md:text-4xl">
               Also in the collection
             </h2>
-            <Link to="/inventory" className="text-[11px] font-medium uppercase tracking-[0.25em] border-b border-onyx pb-1">
+            <Link
+              to="/inventory"
+              className="text-[11px] font-medium uppercase tracking-[0.25em] border-b border-onyx pb-1"
+            >
               View All
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2">
             {others.map((c) => (
-              <Link
-                key={c.id}
-                to="/cars/$carId"
-                params={{ carId: c.id }}
-                className="group block"
-              >
+              <Link key={c.id} to="/cars/$carId" params={{ carId: c.id }} className="group block">
                 <div className="overflow-hidden mb-6">
                   <img
                     src={c.image}
@@ -168,7 +198,9 @@ function CarDetail() {
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-heading text-xl font-medium tracking-tight">{c.name}</h3>
-                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-silver">{c.tagline}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-silver">
+                      {c.tagline}
+                    </p>
                   </div>
                   <span className="text-lg font-light">{formatPrice(c.price)}</span>
                 </div>

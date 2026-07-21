@@ -1,0 +1,124 @@
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export const Route = createFileRoute("/faq")({
+  head: () => ({
+    meta: [
+      { title: "FAQ — Vantedge Automotive" },
+      {
+        name: "description",
+        content:
+          "Answers to common questions about viewing, inspection, delivery, and ownership at Vantedge Automotive.",
+      },
+    ],
+  }),
+  component: Faq,
+});
+
+const sections = [
+  {
+    title: "Viewing & Appointments",
+    items: [
+      {
+        q: "Can I view a vehicle before enquiring?",
+        a: "Yes. All viewings are by private appointment at our Los Angeles, London, or Milan showrooms. Reach out via the Concierge and we'll schedule a time that suits you, including after-hours viewings on request.",
+      },
+      {
+        q: "Do you offer virtual viewings?",
+        a: "We can arrange a live video walkaround with a specialist for vehicles you can't view in person, including close-up detail on any area of the car.",
+      },
+    ],
+  },
+  {
+    title: "Vehicle Condition & Inspection",
+    items: [
+      {
+        q: "How is each vehicle inspected before listing?",
+        a: "Every car undergoes a minimum 60-hour preparation and inspection process by our master technicians, covering mechanical, cosmetic, and provenance checks before it enters the collection.",
+      },
+      {
+        q: "Can I bring my own independent inspector?",
+        a: "Absolutely. We welcome pre-purchase inspections by a third party of your choosing at any of our showrooms.",
+      },
+    ],
+  },
+  {
+    title: "Delivery & Shipping",
+    items: [
+      {
+        q: "Do you deliver internationally?",
+        a: "Yes. All vehicles include enclosed, insured shipping worldwide as standard. Typical delivery windows range from 5–20 business days depending on destination and customs clearance.",
+      },
+      {
+        q: "Is delivery tracked?",
+        a: "Your concierge will provide shipment tracking and coordinate customs documentation for international deliveries.",
+      },
+    ],
+  },
+  {
+    title: "Financing & Trade-Ins",
+    items: [
+      {
+        q: "Do you work with financing partners?",
+        a: "We can introduce you to a small panel of specialist financing partners for collector and performance vehicles. Terms and approval are handled directly between you and the partner institution.",
+      },
+      {
+        q: "Do you accept trade-ins?",
+        a: "Yes, trade-ins are considered on a case-by-case basis. Share your current vehicle's details with your concierge for a preliminary valuation.",
+      },
+    ],
+  },
+  {
+    title: "Warranty & After-Sale",
+    items: [
+      {
+        q: "Is there a warranty included?",
+        a: "Modern-era vehicles include a complimentary limited mechanical warranty; heritage and collector vehicles are sold with full disclosure of condition in lieu of warranty. Extended coverage is available on request.",
+      },
+      {
+        q: "Do you offer ongoing servicing?",
+        a: "Our Atelier network can service and maintain your vehicle post-purchase, including scheduled maintenance and concours-level detailing.",
+      },
+    ],
+  },
+];
+
+function Faq() {
+  return (
+    <div className="bg-ghost">
+      <section className="mx-auto max-w-4xl px-6 pt-24 pb-16">
+        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Good to Know</p>
+        <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
+          Frequently Asked.
+        </h1>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 pb-32 space-y-16">
+        {sections.map((section) => (
+          <div key={section.title}>
+            <h2 className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-silver">
+              {section.title}
+            </h2>
+            <Accordion type="single" collapsible className="border-t border-onyx/10">
+              {section.items.map((item) => (
+                <AccordionItem key={item.q} value={item.q}>
+                  <AccordionTrigger className="text-left font-heading text-lg font-normal">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-onyx/75">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}
