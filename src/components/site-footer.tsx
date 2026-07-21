@@ -1,0 +1,47 @@
+import { Link } from "@tanstack/react-router";
+
+export function SiteFooter() {
+  return (
+    <footer className="border-t border-onyx/5 bg-ghost px-6 py-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-12 md:grid-cols-4">
+        <div className="col-span-2">
+          <div className="font-heading text-2xl font-semibold uppercase tracking-tighter">
+            Vantedge
+          </div>
+          <p className="mt-6 max-w-xs text-xs leading-relaxed text-silver">
+            The intersection of architectural form and extreme performance.
+            Established 2024. By appointment only.
+          </p>
+        </div>
+        <div>
+          <h4 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em]">
+            Experience
+          </h4>
+          <ul className="space-y-4 text-xs text-silver">
+            <li><Link to="/inventory" className="hover:text-onyx transition-colors">Inventory</Link></li>
+            <li><Link to="/contact" className="hover:text-onyx transition-colors">Showroom Finder</Link></li>
+            <li><Link to="/about" className="hover:text-onyx transition-colors">The Atelier</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em]">
+            Legal
+          </h4>
+          <ul className="space-y-4 text-xs text-silver">
+            <li><a href="#" className="hover:text-onyx transition-colors">Privacy Policy</a></li>
+            <li><a href="#" className="hover:text-onyx transition-colors">Terms of Sale</a></li>
+            <li><a href="#" className="hover:text-onyx transition-colors">Certifications</a></li>
+          </ul>
+        </div>
+      </div>
+      <div className="mx-auto mt-20 flex max-w-7xl items-center justify-between border-t border-onyx/5 pt-8 text-[10px] uppercase tracking-[0.25em] text-silver">
+        <span>© 2026 Vantedge Automotive</span>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-onyx">Instagram</a>
+          <a href="#" className="hover:text-onyx">Youtube</a>
+          <a href="#" className="hover:text-onyx">Journal</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
