@@ -44,7 +44,7 @@ function Inventory() {
   const [panelOpen, setPanelOpen] = useState(false);
 
   const update = (patch: Partial<typeof search>) => {
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+    navigate({ search: (prev: typeof search) => ({ ...prev, ...patch }) });
   };
 
   const reset = () =>
