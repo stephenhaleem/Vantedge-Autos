@@ -14,6 +14,7 @@ export type Car = {
   fuelType: FuelType;
   price: number;
   images: string[];
+  image_paths: string[];
   specs: {
     engine: string;
     power: string;
@@ -60,7 +61,8 @@ type CarRow = {
 };
 
 function mapRow(row: CarRow): Car {
-  const images = (row.image_paths ?? []).map(getImageUrl);
+  const image_paths = row.image_paths ?? [];
+  const images = image_paths.map(getImageUrl);
 
   return {
     id: row.id,
@@ -73,6 +75,7 @@ function mapRow(row: CarRow): Car {
     fuelType: row.fuel_type as FuelType,
     price: row.price,
     images,
+    image_paths,
     specs: {
       engine: row.specs.engine,
       power: row.specs.power,
@@ -86,6 +89,7 @@ function mapRow(row: CarRow): Car {
     description: row.description,
   };
 }
+
 export async function fetchCars(): Promise<Car[]> {
   const { data, error } = await supabase.from("cars").select("*");
   if (error) throw error;
@@ -117,8 +121,15 @@ export async function updateCar(id: string, data: Partial<Omit<Car, "id">>): Pro
   if (data.price !== undefined) payload.price = data.price;
   if (data.description !== undefined) payload.description = data.description;
   if (data.specs !== undefined) payload.specs = data.specs;
-  console.log("Updating car:", id);
-  console.log(payload);
+  if (data.image_paths !== undefined) payload.image_paths = data.image_paths;
+
+  if (Object.keys(payload).length === 0) {
+    // Nothing to update — avoid sending an empty PATCH that PostgREST/.single() will choke on.
+    const existing = await fetchCar(id);
+    if (!existing) throw new Error("Car not found");
+    return existing;
+  }
+
   const { data: updated, error } = await supabase
     .from("cars")
     .update(payload)
@@ -153,20 +164,19 @@ export async function deleteCarImage(path: string): Promise<void> {
 
 export async function addCarImagePath(carId: string, path: string) {
   const car = await fetchCar(carId);
-
   if (!car) throw new Error("Car not found");
 
   await updateCar(carId, {
-    images: [...car.images[0], path],
+    image_paths: [...car.image_paths, path],
   });
 }
+
 export async function removeCarImagePath(carId: string, path: string) {
   const car = await fetchCar(carId);
-
   if (!car) throw new Error("Car not found");
 
   await updateCar(carId, {
-    images: car.images.filter((p) => p !== path),
+    image_paths: car.image_paths.filter((p) => p !== path),
   });
 }
 
