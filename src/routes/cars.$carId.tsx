@@ -1,15 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { cars, findCar, formatPrice } from "@/lib/cars";
+import { fetchCar, fetchCars, formatPrice } from "@/lib/cars";
 import { useMemo } from "react";
 import { Heart } from "lucide-react";
 import { ImageGallery } from "@/components/image-gallery";
 import { useCarLists } from "@/lib/use-car-lists";
 
 export const Route = createFileRoute("/cars/$carId")({
-  loader: ({ params }) => {
-    const car = findCar(params.carId);
+  loader: async ({ params }) => {
+    const car = await fetchCar(params.carId);
     if (!car) throw notFound();
-    return { car };
+    const allCars = await fetchCars();
+    return { car, allCars };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
@@ -31,21 +32,21 @@ export const Route = createFileRoute("/cars/$carId")({
 });
 
 function CarDetail() {
-  const { car } = Route.useLoaderData();
+  const { car, allCars } = Route.useLoaderData();
   const { isShortlisted, toggleShortlist } = useCarLists();
   const shortlisted = isShortlisted(car.id);
 
   const others = useMemo(() => {
-    const sameCategory = cars.filter((c) => c.id !== car.id && c.category === car.category);
+    const sameCategory = allCars.filter((c) => c.id !== car.id && c.category === car.category);
     const priceBand = sameCategory.filter((c) => Math.abs(c.price - car.price) / car.price <= 0.35);
     const pool =
       priceBand.length >= 2
         ? priceBand
         : sameCategory.length >= 2
           ? sameCategory
-          : cars.filter((c) => c.id !== car.id);
+          : allCars.filter((c) => c.id !== car.id);
     return pool.slice(0, 2);
-  }, [car]);
+  }, [car, allCars]);
 
   const specs = [
     ["Engine", car.specs.engine],

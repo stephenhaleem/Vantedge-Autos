@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { cars } from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
+import { type Car } from "@/lib/cars";
 import { CarCard } from "@/components/car-card";
 import { useCarLists } from "@/lib/use-car-lists";
 
@@ -11,10 +12,9 @@ export const Route = createFileRoute("/shortlist")({
 });
 
 function ShortlistPage() {
+  const { data: cars = [] } = useCars();
   const { shortlistIds } = useCarLists();
-  const selected = shortlistIds
-    .map((id) => cars.find((c) => c.id === id))
-    .filter(Boolean) as typeof cars;
+  const selected = shortlistIds.map((id) => cars.find((c) => c.id === id)).filter(Boolean) as Car[];
 
   return (
     <div className="bg-ghost">

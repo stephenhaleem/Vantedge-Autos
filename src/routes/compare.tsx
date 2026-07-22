@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { cars, formatPrice } from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
+import { type Car, formatPrice } from "@/lib/cars";
 import { useCarLists } from "@/lib/use-car-lists";
 
 export const Route = createFileRoute("/compare")({
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/compare")({
   component: ComparePage,
 });
 
-const rows: { label: string; get: (c: (typeof cars)[number]) => string }[] = [
+const rows: { label: string; get: (c: Car) => string }[] = [
   { label: "Price", get: (c) => formatPrice(c.price) },
   { label: "Category", get: (c) => c.category },
   { label: "Fuel Type", get: (c) => c.fuelType },
@@ -27,10 +28,9 @@ const rows: { label: string; get: (c: (typeof cars)[number]) => string }[] = [
 ];
 
 function ComparePage() {
+  const { data: cars = [] } = useCars();
   const { compareIds, removeCompare } = useCarLists();
-  const selected = compareIds
-    .map((id) => cars.find((c) => c.id === id))
-    .filter(Boolean) as typeof cars;
+  const selected = compareIds.map((id) => cars.find((c) => c.id === id)).filter(Boolean) as Car[];
 
   return (
     <div className="bg-ghost">

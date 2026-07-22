@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { X } from "lucide-react";
-import { cars } from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
 import { useCarLists } from "@/lib/use-car-lists";
 
 export function CompareBar() {
+  const { data: cars = [] } = useCars();
   const { compareIds, removeCompare, clearCompare } = useCarLists();
   if (compareIds.length === 0) return null;
 

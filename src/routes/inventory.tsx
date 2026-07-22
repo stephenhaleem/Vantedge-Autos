@@ -4,26 +4,21 @@ import { z } from "zod";
 import { useEffect, useMemo, useState } from "react";
 import { Search, X, SlidersHorizontal } from "lucide-react";
 import { CarCardSkeleton } from "@/components/car-card-skeleton";
-import {
-  cars,
-  allMakes,
-  allModels,
-  allFuelTypes,
-  yearBounds,
-  priceBounds,
-  formatPrice,
-} from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
+import { deriveFacets, formatPrice } from "@/lib/cars";
 import { CarCard } from "@/components/car-card";
+
+const currentYear = new Date().getFullYear();
 
 const searchSchema = z.object({
   q: fallback(z.string(), "").default(""),
   make: fallback(z.string(), "").default(""),
   model: fallback(z.string(), "").default(""),
   fuel: fallback(z.string(), "").default(""),
-  yearMin: fallback(z.number().int(), yearBounds.min).default(yearBounds.min),
-  yearMax: fallback(z.number().int(), yearBounds.max).default(yearBounds.max),
-  priceMin: fallback(z.number().int(), priceBounds.min).default(priceBounds.min),
-  priceMax: fallback(z.number().int(), priceBounds.max).default(priceBounds.max),
+  yearMin: fallback(z.number().int(), 1900).default(1900),
+  yearMax: fallback(z.number().int(), currentYear).default(currentYear),
+  priceMin: fallback(z.number().int(), 0).default(0),
+  priceMax: fallback(z.number().int(), 10_000_000).default(10_000_000),
 });
 
 export const Route = createFileRoute("/inventory")({
@@ -47,10 +42,19 @@ export const Route = createFileRoute("/inventory")({
 });
 
 function Inventory() {
+  const { data: cars = [], isLoading: carsLoading } = useCars();
+  const {
+    allMakes,
+    allModels: allModelsBase,
+    allFuelTypes,
+    yearBounds,
+    priceBounds,
+  } = useMemo(() => deriveFacets(cars), [cars]);
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const [panelOpen, setPanelOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const showLoading = loading || carsLoading;
 
   useEffect(() => {
     setLoading(true);
@@ -81,7 +85,7 @@ function Inventory() {
     () =>
       search.make
         ? Array.from(new Set(cars.filter((c) => c.make === search.make).map((c) => c.model))).sort()
-        : allModels,
+        : allModelsBase,
     [search.make],
   );
 
@@ -278,7 +282,7 @@ function Inventory() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-16 pb-32">
-        {loading ? (
+        {showLoading ? (
           <div className="grid grid-cols-1 gap-x-12 gap-y-24 md:grid-cols-2">
             {Array.from({ length: 4 }).map((_, i) => (
               <CarCardSkeleton key={i} />

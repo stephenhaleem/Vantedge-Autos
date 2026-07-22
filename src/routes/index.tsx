@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { cars, formatPrice, heroImage } from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
+import { formatPrice } from "@/lib/cars";
 import { CarCard } from "@/components/car-card";
 import craftsmanship from "@/assets/craftsmanship.jpg";
 import showroomImage from "@/assets/showroom.jpg";
@@ -10,12 +11,12 @@ import { RotatingWord } from "@/components/rotating-word";
 import { useIsMobile } from "@/hooks/use-mobile";
 import martin1 from "@/assets/martin-katler-e3gVocvZ-g0-unsplash.jpg";
 import martin2 from "@/assets/martin-katler-Sr9dLwS_kjs-unsplash.jpg";
-import { PressStrip } from "@/components/press-strip";
+
 import janse from "@/assets/janse.jpg";
 import thinh from "@/assets/thinh.jpg";
 import yuvraj from "@/assets/yuvraj.jpg";
 
-const desktopSlides = [heroImage, janse, yuvraj, thinh];
+const desktopSlides = [aeonImage, janse, yuvraj, thinh];
 const mobileSlides = [devonImage, martin1, martin2];
 
 export const Route = createFileRoute("/")({
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { data: cars = [] } = useCars();
   const featured = cars.slice(0, 4);
   const isMobile = useIsMobile();
   const slides = isMobile ? mobileSlides : desktopSlides;
@@ -107,15 +109,14 @@ function Home() {
           </span>
         </div>
       </section>
-      <PressStrip />
+
       {/* Stats strip */}
       <section className="border-y border-onyx/5 bg-ghost">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-onyx/5 md:grid-cols-4">
           {[
-            { k: "42", l: "Vehicles in Stock" },
-            { k: "16", l: "Manufacturers" },
-            { k: "3", l: "Global Showrooms" },
-            { k: "24h", l: "Concierge Response" },
+            { k: String(cars.length), l: "Vehicles in Stock" },
+            { k: String(new Set(cars.map((c) => c.make)).size), l: "Manufacturers" },
+            { k: "24h", l: "Support Response" },
           ].map((s) => (
             <div key={s.l} className="px-6 py-10">
               <div className="font-heading text-4xl font-light tracking-tight">{s.k}</div>

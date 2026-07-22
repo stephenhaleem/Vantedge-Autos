@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { cars } from "@/lib/cars";
+import { fetchCars } from "@/lib/cars";
 
 const BASE_URL = "";
 
@@ -8,13 +8,19 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const cars = await fetchCars();
+
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/inventory", changefreq: "daily", priority: "0.9" },
           { path: "/collections", changefreq: "weekly", priority: "0.7" },
           { path: "/about", changefreq: "monthly", priority: "0.5" },
           { path: "/contact", changefreq: "monthly", priority: "0.5" },
-          ...cars.map((c) => ({ path: `/cars/${c.id}`, changefreq: "weekly" as const, priority: "0.8" })),
+          ...cars.map((c) => ({
+            path: `/cars/${c.id}`,
+            changefreq: "weekly" as const,
+            priority: "0.8",
+          })),
         ];
 
         const urls = entries.map((e) =>
@@ -24,7 +30,9 @@ export const Route = createFileRoute("/sitemap.xml")({
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
-          ].filter(Boolean).join("\n"),
+          ]
+            .filter(Boolean)
+            .join("\n"),
         );
 
         const xml = [

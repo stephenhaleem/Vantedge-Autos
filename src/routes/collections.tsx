@@ -1,13 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { cars, formatPrice } from "@/lib/cars";
+import { useCars } from "@/lib/use-cars";
+import { formatPrice } from "@/lib/cars";
 
 export const Route = createFileRoute("/collections")({
   head: () => ({
     meta: [
       { title: "Collections — Vantedge Automotive" },
-      { name: "description", content: "Themed collections at Vantedge Automotive: Electric, Performance, Heritage, and Hypercar." },
+      {
+        name: "description",
+        content:
+          "Themed collections at Vantedge Automotive: Electric, Performance, Heritage, and Hypercar.",
+      },
       { property: "og:title", content: "Collections — Vantedge Automotive" },
-      { property: "og:description", content: "Explore themed collections of curated automobiles at Vantedge." },
+      {
+        property: "og:description",
+        content: "Explore themed collections of curated automobiles at Vantedge.",
+      },
     ],
   }),
   component: Collections,
@@ -16,6 +24,7 @@ export const Route = createFileRoute("/collections")({
 const groups = ["Electric", "Performance", "Heritage", "Hypercar"] as const;
 
 function Collections() {
+  const { data: cars = [] } = useCars();
   return (
     <div className="bg-ghost">
       <section className="mx-auto max-w-7xl px-6 pt-24 pb-16 animate-reveal">
@@ -24,8 +33,8 @@ function Collections() {
           Collections.
         </h1>
         <p className="mt-8 max-w-lg text-base leading-relaxed text-onyx/75">
-          Vehicles organised by philosophy. Each collection reflects a specific
-          era, engineering discipline, or design intent.
+          Vehicles organised by philosophy. Each collection reflects a specific era, engineering
+          discipline, or design intent.
         </p>
       </section>
 
@@ -36,9 +45,7 @@ function Collections() {
           return (
             <div key={g}>
               <div className="mb-10 flex items-end justify-between border-b border-onyx/10 pb-6">
-                <h2 className="font-heading text-3xl font-light tracking-tight md:text-4xl">
-                  {g}
-                </h2>
+                <h2 className="font-heading text-3xl font-light tracking-tight md:text-4xl">{g}</h2>
                 <span className="text-[10px] uppercase tracking-[0.25em] text-silver">
                   {list.length} {list.length === 1 ? "Vehicle" : "Vehicles"}
                 </span>
