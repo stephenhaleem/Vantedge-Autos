@@ -13,7 +13,6 @@ export type Car = {
   category: Category;
   fuelType: FuelType;
   price: number;
-  image: string;
   images: string[];
   specs: {
     engine: string;
@@ -46,7 +45,6 @@ type CarRow = {
   category: string;
   fuel_type: string;
   price: number;
-  image_path: string;
   image_paths: string[] | null;
   specs: {
     engine: string;
@@ -62,6 +60,8 @@ type CarRow = {
 };
 
 function mapRow(row: CarRow): Car {
+  const images = (row.image_paths ?? []).map(getImageUrl);
+
   return {
     id: row.id,
     name: row.name,
@@ -72,8 +72,7 @@ function mapRow(row: CarRow): Car {
     category: row.category as Category,
     fuelType: row.fuel_type as FuelType,
     price: row.price,
-    image: getImageUrl(row.image_path),
-    images: (row.image_paths?.length ? row.image_paths : [row.image_path]).map(getImageUrl),
+    images,
     specs: {
       engine: row.specs.engine,
       power: row.specs.power,
@@ -87,7 +86,6 @@ function mapRow(row: CarRow): Car {
     description: row.description,
   };
 }
-
 export async function fetchCars(): Promise<Car[]> {
   const { data, error } = await supabase.from("cars").select("*");
   if (error) throw error;
@@ -106,6 +104,71 @@ export const formatPrice = (n: number) =>
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(n);
+
+export async function updateCar(id: string, data: Partial<Omit<Car, "id">>): Promise<Car> {
+  const payload: Record<string, unknown> = {};
+  if (data.name !== undefined) payload.name = data.name;
+  if (data.make !== undefined) payload.make = data.make;
+  if (data.model !== undefined) payload.model = data.model;
+  if (data.year !== undefined) payload.year = data.year;
+  if (data.tagline !== undefined) payload.tagline = data.tagline;
+  if (data.category !== undefined) payload.category = data.category;
+  if (data.fuelType !== undefined) payload.fuel_type = data.fuelType;
+  if (data.price !== undefined) payload.price = data.price;
+  if (data.description !== undefined) payload.description = data.description;
+  if (data.specs !== undefined) payload.specs = data.specs;
+  console.log("Updating car:", id);
+  console.log(payload);
+  const { data: updated, error } = await supabase
+    .from("cars")
+    .update(payload)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return mapRow(updated as CarRow);
+}
+
+export async function deleteCar(id: string): Promise<void> {
+  const { error } = await supabase.from("cars").delete().eq("id", id);
+  if (error) throw error;
+}
+
+export async function uploadCarImage(file: File, carId: string): Promise<string> {
+  const ext = file.name.split(".").pop() ?? "jpg";
+  const path = `user_uploads/${carId}_${Date.now()}.${ext}`;
+  const { error } = await supabase.storage.from(CAR_IMAGES_BUCKET).upload(path, file, {
+    cacheControl: "3600",
+    upsert: false,
+  });
+  if (error) throw error;
+  return path;
+}
+
+export async function deleteCarImage(path: string): Promise<void> {
+  const { error } = await supabase.storage.from(CAR_IMAGES_BUCKET).remove([path]);
+  if (error) throw error;
+}
+
+export async function addCarImagePath(carId: string, path: string) {
+  const car = await fetchCar(carId);
+
+  if (!car) throw new Error("Car not found");
+
+  await updateCar(carId, {
+    images: [...car.images[0], path],
+  });
+}
+export async function removeCarImagePath(carId: string, path: string) {
+  const car = await fetchCar(carId);
+
+  if (!car) throw new Error("Car not found");
+
+  await updateCar(carId, {
+    images: car.images.filter((p) => p !== path),
+  });
+}
 
 export function deriveFacets(cars: Car[]) {
   const allMakes = Array.from(new Set(cars.map((c) => c.make))).sort();

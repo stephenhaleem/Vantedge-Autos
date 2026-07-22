@@ -66,7 +66,7 @@ function ComparePage() {
                   <th key={car.id} className="px-4 pb-6 text-left align-top">
                     <div className="mb-4 overflow-hidden">
                       <img
-                        src={car.image}
+                        src={car.images[0] || "/placeholder.jpg"}
                         alt={car.name}
                         className="aspect-[4/3] w-full object-cover"
                       />

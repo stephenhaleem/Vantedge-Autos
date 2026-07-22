@@ -188,7 +188,7 @@ function CarDetail() {
               <Link key={c.id} to="/cars/$carId" params={{ carId: c.id }} className="group block">
                 <div className="overflow-hidden mb-6">
                   <img
-                    src={c.image}
+                    src={c.images[0]}
                     alt={c.name}
                     width={1200}
                     height={900}

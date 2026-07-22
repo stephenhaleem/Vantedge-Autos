@@ -60,7 +60,7 @@ function Collections() {
                   >
                     <div className="overflow-hidden mb-4">
                       <img
-                        src={c.image}
+                        src={c.images[0]}
                         alt={c.name}
                         width={1200}
                         height={900}

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -19,6 +20,7 @@ import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CarsCarIdRouteImport } from './routes/cars.$carId'
+import { Route as AdminEditCarIdRouteImport } from './routes/admin_.edit.$carId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionsRoute = CollectionsRouteImport.update({
@@ -70,10 +77,16 @@ const CarsCarIdRoute = CarsCarIdRouteImport.update({
   path: '/cars/$carId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminEditCarIdRoute = AdminEditCarIdRouteImport.update({
+  id: '/admin_/edit/$carId',
+  path: '/admin/edit/$carId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -82,10 +95,12 @@ export interface FileRoutesByFullPath {
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
+  '/admin/edit/$carId': typeof AdminEditCarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -94,11 +109,13 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
+  '/admin/edit/$carId': typeof AdminEditCarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/collections': typeof CollectionsRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -107,12 +124,14 @@ export interface FileRoutesById {
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/cars/$carId': typeof CarsCarIdRoute
+  '/admin_/edit/$carId': typeof AdminEditCarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/collections'
     | '/compare'
     | '/contact'
@@ -121,10 +140,12 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/sitemap.xml'
     | '/cars/$carId'
+    | '/admin/edit/$carId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/collections'
     | '/compare'
     | '/contact'
@@ -133,10 +154,12 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/sitemap.xml'
     | '/cars/$carId'
+    | '/admin/edit/$carId'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/collections'
     | '/compare'
     | '/contact'
@@ -145,11 +168,13 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/sitemap.xml'
     | '/cars/$carId'
+    | '/admin_/edit/$carId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
   CollectionsRoute: typeof CollectionsRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
@@ -158,6 +183,7 @@ export interface RootRouteChildren {
   ShortlistRoute: typeof ShortlistRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CarsCarIdRoute: typeof CarsCarIdRoute
+  AdminEditCarIdRoute: typeof AdminEditCarIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -174,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collections': {
@@ -232,12 +265,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarsCarIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/edit/$carId': {
+      id: '/admin_/edit/$carId'
+      path: '/admin/edit/$carId'
+      fullPath: '/admin/edit/$carId'
+      preLoaderRoute: typeof AdminEditCarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
   CollectionsRoute: CollectionsRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
@@ -246,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShortlistRoute: ShortlistRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CarsCarIdRoute: CarsCarIdRoute,
+  AdminEditCarIdRoute: AdminEditCarIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

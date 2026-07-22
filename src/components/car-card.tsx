@@ -13,7 +13,7 @@ export function CarCard({ car }: { car: Car }) {
       <Link to="/cars/$carId" params={{ carId: car.id }} className="block">
         <div className="relative mb-5 overflow-hidden">
           <img
-            src={car.image}
+            src={car.images[0]}
             alt={car.name}
             width={1200}
             height={900}
