@@ -4,19 +4,42 @@ import { useState } from "react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Concierge & Showrooms — Vantedge Automotive" },
-      { name: "description", content: "Contact Vantedge Automotive. Private viewings in Los Angeles, London, and Milan. Concierge available 24 hours." },
-      { property: "og:title", content: "Concierge & Showrooms — Vantedge Automotive" },
-      { property: "og:description", content: "Reach the Vantedge concierge and book a private viewing at one of our global showrooms." },
+      { title: "Concierge & Showrooms — Chrono Value Auto" },
+      {
+        name: "description",
+        content:
+          "Contact Chrono Value Auto. Private viewings in Los Angeles, London, and Milan. Concierge available 24 hours.",
+      },
+      { property: "og:title", content: "Concierge & Showrooms — Chrono Value Auto" },
+      {
+        property: "og:description",
+        content:
+          "Reach the Chrono Value Auto concierge and book a private viewing at one of our global showrooms.",
+      },
     ],
   }),
   component: Contact,
 });
 
 const showrooms = [
-  { city: "Los Angeles", address: "8420 Melrose Ave", region: "West Hollywood, CA", hours: "By Appointment" },
-  { city: "London", address: "12 Berkeley Square", region: "Mayfair, W1J", hours: "By Appointment" },
-  { city: "Milan", address: "Via della Spiga 22", region: "Quadrilatero, 20121", hours: "By Appointment" },
+  {
+    city: "Los Angeles",
+    address: "8420 Melrose Ave",
+    region: "West Hollywood, CA",
+    hours: "By Appointment",
+  },
+  {
+    city: "London",
+    address: "12 Berkeley Square",
+    region: "Mayfair, W1J",
+    hours: "By Appointment",
+  },
+  {
+    city: "Milan",
+    address: "Via della Spiga 22",
+    region: "Quadrilatero, 20121",
+    hours: "By Appointment",
+  },
 ];
 
 function Contact() {
@@ -30,9 +53,8 @@ function Contact() {
           Speak with us.
         </h1>
         <p className="mt-8 max-w-lg text-base leading-relaxed text-onyx/75">
-          Enquire about a specific vehicle, arrange a private viewing, or begin
-          a bespoke commission. A member of our concierge team will reply within
-          24 hours.
+          Enquire about a specific vehicle, arrange a private viewing, or begin a bespoke
+          commission. A member of our concierge team will reply within 24 hours.
         </p>
       </section>
 
@@ -40,7 +62,10 @@ function Contact() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSent(true);
+              }}
               className="space-y-8 border-t border-onyx/10 pt-10"
             >
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -59,7 +84,9 @@ function Contact() {
                   className="w-full border-b border-onyx/15 bg-transparent py-3 text-sm outline-none focus:border-onyx"
                   defaultValue=""
                 >
-                  <option value="" disabled>Select an option</option>
+                  <option value="" disabled>
+                    Select an option
+                  </option>
                   <option>Purchase Enquiry</option>
                   <option>Private Viewing</option>
                   <option>Bespoke Commission</option>
@@ -100,9 +127,7 @@ function Contact() {
 
           <div className="lg:col-span-5">
             <div className="border-t border-onyx/10 pt-10">
-              <h2 className="text-[10px] font-semibold uppercase tracking-[0.3em]">
-                Showrooms
-              </h2>
+              <h2 className="text-[10px] font-semibold uppercase tracking-[0.3em]">Showrooms</h2>
               <div className="mt-10 space-y-10">
                 {showrooms.map((s) => (
                   <div key={s.city}>
@@ -118,7 +143,7 @@ function Contact() {
 
               <div className="mt-16 border-t border-onyx/10 pt-8 space-y-2 text-sm">
                 <p className="text-[10px] uppercase tracking-[0.25em] text-silver">Concierge</p>
-                <p>concierge@vantedge.auto</p>
+                <p>concierge@Chrono Value Auto.auto</p>
                 <p>+1 (310) 555 0184</p>
               </div>
             </div>
@@ -129,7 +154,17 @@ function Contact() {
   );
 }
 
-function Field({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
       <label className="mb-3 block text-[10px] font-medium uppercase tracking-[0.3em] text-silver">

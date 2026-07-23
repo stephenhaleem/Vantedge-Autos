@@ -5,16 +5,16 @@ import { formatPrice } from "@/lib/cars";
 export const Route = createFileRoute("/collections")({
   head: () => ({
     meta: [
-      { title: "Collections — Vantedge Automotive" },
+      { title: "Collections — Chrono Value Auto" },
       {
         name: "description",
         content:
-          "Themed collections at Vantedge Automotive: Electric, Performance, Heritage, and Hypercar.",
+          "Themed collections at Chrono Value Auto: Electric, Performance, Heritage, and Hypercar.",
       },
-      { property: "og:title", content: "Collections — Vantedge Automotive" },
+      { property: "og:title", content: "Collections — Chrono Value Auto" },
       {
         property: "og:description",
-        content: "Explore themed collections of curated automobiles at Vantedge.",
+        content: "Explore themed collections of curated automobiles at Chrono Value Auto.",
       },
     ],
   }),

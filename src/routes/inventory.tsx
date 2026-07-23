@@ -25,16 +25,16 @@ export const Route = createFileRoute("/inventory")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Inventory — Vantedge Automotive" },
+      { title: "Inventory — Chrono Value Auto" },
       {
         name: "description",
         content:
-          "Search and filter the Vantedge inventory by make, model, year, price, and fuel type.",
+          "Search and filter the Chrono Value Auto inventory by make, model, year, price, and fuel type.",
       },
-      { property: "og:title", content: "Inventory — Vantedge Automotive" },
+      { property: "og:title", content: "Inventory — Chrono Value Auto" },
       {
         property: "og:description",
-        content: "Search and filter curated premium automobiles at Vantedge.",
+        content: "Search and filter curated premium automobiles at Chrono Value Auto.",
       },
     ],
   }),
@@ -145,8 +145,9 @@ function Inventory() {
             <span className="italic">Inventory.</span>
           </h1>
           <p className="mt-8 max-w-lg text-sm leading-relaxed text-silver">
-            Each vehicle in the Vantedge collection is inspected, documented, and prepared by our
-            master technicians. Viewing available in Los Angeles, London, and Milan by appointment.
+            Each vehicle in the Chrono Value Auto collection is inspected, documented, and prepared
+            by our master technicians. Viewing available in Los Angeles, London, and Milan by
+            appointment.
           </p>
         </div>
       </section>

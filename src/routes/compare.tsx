@@ -6,7 +6,7 @@ import { useCarLists } from "@/lib/use-car-lists";
 export const Route = createFileRoute("/compare")({
   head: () => ({
     meta: [
-      { title: "Compare Vehicles — Vantedge Automotive" },
+      { title: "Compare Vehicles — Chrono Value Auto" },
       { name: "robots", content: "noindex" },
     ],
   }),

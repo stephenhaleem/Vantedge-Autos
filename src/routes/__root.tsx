@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Vantedge Automotive — Premium Cars, Curated" },
+      { title: "Chrono Value Auto — Premium Cars, Curated" },
       {
         name: "description",
         content:
-          "Vantedge curates a private collection of premium performance, electric, heritage, and hypercars. Viewing by appointment.",
+          "Chrono Value Auto curates a private collection of premium performance, electric, heritage, and hypercars. Viewing by appointment.",
       },
-      { name: "author", content: "Vantedge Automotive" },
-      { property: "og:title", content: "Vantedge Automotive — Premium Cars, Curated" },
+      { name: "author", content: "Chrono Value Auto" },
+      { property: "og:title", content: "Chrono Value Auto — Premium Cars, Curated" },
       {
         property: "og:description",
         content: "A curated collection of premium performance, electric, heritage, and hypercars.",

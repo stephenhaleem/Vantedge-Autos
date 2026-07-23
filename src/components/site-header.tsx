@@ -35,10 +35,10 @@ export function SiteHeader() {
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link to="/" className="group flex items-baseline gap-1 sm:gap-2">
             <span className="font-heading text-xl sm:text-2xl font-semibold uppercase tracking-tighter">
-              Vantedge
+              Chrono
             </span>
             <span className="hidden sm:text-[9px] font-medium uppercase tracking-[0.3em] text-silver transition-opacity md:inline-block">
-              Automotive
+              Value Auto
             </span>
           </Link>
 
@@ -102,7 +102,7 @@ export function SiteHeader() {
                   {/* Header */}
                   <div className="flex items-center justify-between border-b border-onyx/10 px-8 py-8">
                     <span className="font-heading text-xl font-semibold uppercase tracking-tighter">
-                      Vantedge
+                      Chrono Value Auto
                     </span>
                     <SheetClose className="h-8 w-8 flex items-center justify-center text-onyx/60 hover:text-onyx transition-colors">
                       <svg

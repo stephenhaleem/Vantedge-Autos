@@ -7,7 +7,7 @@ import { Edit3, Trash2, Lock, LogOut, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
-    meta: [{ title: "Admin — Vantedge Automotive" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Admin — Chrono Value Auto" }, { name: "robots", content: "noindex" }],
   }),
   component: AdminPage,
 });

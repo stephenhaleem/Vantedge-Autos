@@ -132,7 +132,7 @@ export const Route = createFileRoute("/admin_/edit/$carId")({
   head: ({ loaderData }) => ({
     meta: [
       {
-        title: `Edit ${loaderData?.car?.name ?? "Vehicle"} \u2014 Admin \u2014 Vantedge Automotive`,
+        title: `Edit ${loaderData?.car?.name ?? "Vehicle"} \u2014 Admin \u2014 Chrono Value Auto`,
       },
       { name: "robots", content: "noindex" },
     ],

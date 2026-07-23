@@ -6,7 +6,7 @@ import { useCarLists } from "@/lib/use-car-lists";
 
 export const Route = createFileRoute("/shortlist")({
   head: () => ({
-    meta: [{ title: "My Shortlist — Vantedge Automotive" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "My Shortlist — Chrono Value Auto" }, { name: "robots", content: "noindex" }],
   }),
   component: ShortlistPage,
 });

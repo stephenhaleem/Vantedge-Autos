@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-const COMPARE_KEY = "vantedge:compare";
-const SHORTLIST_KEY = "vantedge:shortlist";
+const COMPARE_KEY = "Chrono Value Auto:compare";
+const SHORTLIST_KEY = "Chrono Value Auto:shortlist";
 const MAX_COMPARE = 3;
 
 function readIds(key: string): string[] {
@@ -16,7 +16,7 @@ function readIds(key: string): string[] {
 
 function writeIds(key: string, ids: string[]) {
   window.localStorage.setItem(key, JSON.stringify(ids));
-  window.dispatchEvent(new CustomEvent("vantedge:storage"));
+  window.dispatchEvent(new CustomEvent("Chrono Value Auto:storage"));
 }
 
 type CarListsContextValue = {
@@ -44,10 +44,10 @@ export function CarListsProvider({ children }: { children: ReactNode }) {
     };
     sync();
     window.addEventListener("storage", sync);
-    window.addEventListener("vantedge:storage", sync);
+    window.addEventListener("Chrono Value Auto:storage", sync);
     return () => {
       window.removeEventListener("storage", sync);
-      window.removeEventListener("vantedge:storage", sync);
+      window.removeEventListener("Chrono Value Auto:storage", sync);
     };
   }, []);
 

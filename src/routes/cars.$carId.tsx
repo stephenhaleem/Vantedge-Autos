@@ -15,15 +15,18 @@ export const Route = createFileRoute("/cars/$carId")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Vehicle Not Found — Vantedge" }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: "Vehicle Not Found — Chrono Value Auto" },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
     const { car } = loaderData;
     return {
       meta: [
-        { title: `${car.name} — Vantedge Automotive` },
+        { title: `${car.name} — Chrono Value Auto` },
         { name: "description", content: `${car.name}: ${car.tagline}. ${car.description}` },
-        { property: "og:title", content: `${car.name} — Vantedge Automotive` },
+        { property: "og:title", content: `${car.name} — Chrono Value Auto` },
         { property: "og:description", content: car.description },
       ],
     };

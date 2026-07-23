@@ -22,13 +22,13 @@ const mobileSlides = [devonImage, martin1, martin2];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vantedge Automotive — Premium Cars, Curated" },
+      { title: "Chrono Value Auto — Premium Cars, Curated" },
       {
         name: "description",
         content:
-          "Discover Vantedge: a curated collection of premium performance, electric, and heritage automobiles. Viewing by appointment.",
+          "Discover Chrono Value Auto: a curated collection of premium performance, electric, and heritage automobiles. Viewing by appointment.",
       },
-      { property: "og:title", content: "Vantedge Automotive — Premium Cars, Curated" },
+      { property: "og:title", content: "Chrono Value Auto — Premium Cars, Curated" },
       {
         property: "og:description",
         content: "A curated collection of premium performance, electric, heritage, and hypercars.",
@@ -176,9 +176,9 @@ function Home() {
               <span className="italic">distinctive pulse.</span>
             </h2>
             <p className="mb-12 max-w-md text-sm leading-relaxed text-silver">
-              Every Vantedge vehicle is an extension of its owner. Through our Bespoke Studio, you
-              access a library of exclusive materials, custom finishes, and engineering adjustments
-              that ensure your car is as unique as your thumbprint.
+              Every Chrono Value Auto vehicle is an extension of its owner. Through our Bespoke
+              Studio, you access a library of exclusive materials, custom finishes, and engineering
+              adjustments that ensure your car is as unique as your thumbprint.
             </p>
             <Link
               to="/about"

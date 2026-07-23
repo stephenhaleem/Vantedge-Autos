@@ -9,11 +9,11 @@ import {
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Vantedge Automotive" },
+      { title: "FAQ — Chrono Value Auto" },
       {
         name: "description",
         content:
-          "Answers to common questions about viewing, inspection, delivery, and ownership at Vantedge Automotive.",
+          "Answers to common questions about viewing, inspection, delivery, and ownership at Chrono Value Auto.",
       },
     ],
   }),
