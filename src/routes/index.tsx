@@ -608,7 +608,7 @@ function Home() {
                   className="group inline-flex h-14 items-center gap-4 border border-ghost/30 px-8 text-[12px] font-medium uppercase tracking-[0.25em] text-ghost hover:bg-ghost hover:text-onyx transition-colors"
                 >
                   Browse Inventory
-                  <span className="h-px w-8 bg-current transition-all duration-500 group-hover:w-14" />
+                  <span className="h-px w-8 bg-current transition-all duration-500 group-hover:w-9" />
                 </Link>
               </div>
             </div>
