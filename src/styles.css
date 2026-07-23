@@ -230,6 +230,32 @@
     opacity: 1;
   }
 }
+@keyframes tire-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-tire-spin {
+  animation: tire-spin 1.1s linear infinite;
+}
+
+@keyframes loader-text-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility animate-loader-text {
+  animation: loader-text-pulse 1.8s ease-in-out infinite;
+}
 
 @layer base {
   * {
