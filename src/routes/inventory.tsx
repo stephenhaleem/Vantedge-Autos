@@ -165,7 +165,7 @@ function Inventory() {
       </section>
 
       {/* Search bar */}
-      <section className="fixed top-[110px] left-0 right-0 z-30 border-y border-onyx/10 bg-ghost/90 backdrop-blur-xl">
+      <section className="fixed top-16 sm:top-20 left-0 right-0 z-30 border-y border-onyx/10 bg-ghost/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
           <div className="relative flex-1">
             <Search

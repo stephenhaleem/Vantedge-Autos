@@ -17,8 +17,10 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CarsCarIdRouteImport } from './routes/cars.$carId'
 import { Route as AdminEditCarIdRouteImport } from './routes/admin_.edit.$carId'
 
@@ -62,6 +64,11 @@ const InventoryRoute = InventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShortlistRoute = ShortlistRouteImport.update({
   id: '/shortlist',
   path: '/shortlist',
@@ -70,6 +77,11 @@ const ShortlistRoute = ShortlistRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CarsCarIdRoute = CarsCarIdRouteImport.update({
@@ -92,8 +104,10 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/inventory': typeof InventoryRoute
+  '/privacy': typeof PrivacyRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/cars/$carId': typeof CarsCarIdRoute
   '/admin/edit/$carId': typeof AdminEditCarIdRoute
 }
@@ -106,8 +120,10 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/inventory': typeof InventoryRoute
+  '/privacy': typeof PrivacyRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/cars/$carId': typeof CarsCarIdRoute
   '/admin/edit/$carId': typeof AdminEditCarIdRoute
 }
@@ -121,8 +137,10 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/inventory': typeof InventoryRoute
+  '/privacy': typeof PrivacyRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/cars/$carId': typeof CarsCarIdRoute
   '/admin_/edit/$carId': typeof AdminEditCarIdRoute
 }
@@ -137,8 +155,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/inventory'
+    | '/privacy'
     | '/shortlist'
     | '/sitemap.xml'
+    | '/terms'
     | '/cars/$carId'
     | '/admin/edit/$carId'
   fileRoutesByTo: FileRoutesByTo
@@ -151,8 +171,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/inventory'
+    | '/privacy'
     | '/shortlist'
     | '/sitemap.xml'
+    | '/terms'
     | '/cars/$carId'
     | '/admin/edit/$carId'
   id:
@@ -165,8 +187,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/inventory'
+    | '/privacy'
     | '/shortlist'
     | '/sitemap.xml'
+    | '/terms'
     | '/cars/$carId'
     | '/admin_/edit/$carId'
   fileRoutesById: FileRoutesById
@@ -180,8 +204,10 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   InventoryRoute: typeof InventoryRoute
+  PrivacyRoute: typeof PrivacyRoute
   ShortlistRoute: typeof ShortlistRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   CarsCarIdRoute: typeof CarsCarIdRoute
   AdminEditCarIdRoute: typeof AdminEditCarIdRoute
 }
@@ -244,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shortlist': {
       id: '/shortlist'
       path: '/shortlist'
@@ -256,6 +289,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cars/$carId': {
@@ -284,8 +324,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   InventoryRoute: InventoryRoute,
+  PrivacyRoute: PrivacyRoute,
   ShortlistRoute: ShortlistRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   CarsCarIdRoute: CarsCarIdRoute,
   AdminEditCarIdRoute: AdminEditCarIdRoute,
 }

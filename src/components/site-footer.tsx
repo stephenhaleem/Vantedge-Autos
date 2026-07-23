@@ -38,19 +38,14 @@ export function SiteFooter() {
           <h4 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em]">Legal</h4>
           <ul className="space-y-4 text-xs text-silver">
             <li>
-              <a href="#" className="hover:text-onyx transition-colors">
+              <Link to="/privacy" className="hover:text-onyx transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-onyx transition-colors">
+              <Link to="/terms" className="hover:text-onyx transition-colors">
                 Terms of Sale
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-onyx transition-colors">
-                Certifications
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
