@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
 export type FuelType = "Petrol" | "Electric" | "Hybrid" | "Diesel";
-export type Category = "Electric" | "Performance" | "Heritage" | "Hypercar";
+export type Category = "Sedans" | "SUVs" | "Trucks" | "Coupes";
 
 export type Car = {
   id: string;

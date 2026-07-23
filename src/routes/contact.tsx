@@ -14,17 +14,16 @@ export const Route = createFileRoute("/contact")({
   validateSearch: zodValidator(contactSearchSchema),
   head: () => ({
     meta: [
-      { title: "Concierge & Showrooms — Chrono Value Auto" },
+      { title: "Contact Us — Chrono Value Auto" },
       {
         name: "description",
         content:
-          "Contact Chrono Value Auto. Private viewings in Los Angeles, London, and Milan. Concierge available 24 hours.",
+          "Contact Chrono Value Auto, a used car dealership in Houston, Texas. Visit our lot or send us a message.",
       },
-      { property: "og:title", content: "Concierge & Showrooms — Chrono Value Auto" },
+      { property: "og:title", content: "Contact Us — Chrono Value Auto" },
       {
         property: "og:description",
-        content:
-          "Reach the Chrono Value Auto concierge and book a private viewing at one of our global showrooms.",
+        content: "Visit our Houston, TX lot or reach our sales team online.",
       },
     ],
   }),
@@ -83,14 +82,20 @@ function Contact() {
 
   return (
     <div className="bg-ghost">
-      <section className="mx-auto max-w-7xl px-6 pt-24 pb-16 animate-reveal">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Concierge</p>
-        <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
-            Speak with us.
+      <section className="relative -mt-[110px] flex items-center overflow-hidden bg-onyx min-h-[45vh] md:min-h-[55vh] pt-[110px]">
+        <div className="absolute inset-0 z-0">
+          <img src={ignition} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-onyx/40 to-onyx/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-onyx/60 to-transparent" />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-ghost/60">Get In Touch</p>
+          <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter text-ghost md:text-7xl">
+            Let's talk cars.
           </h1>
-          <p className="mt-8 max-w-lg text-base leading-relaxed text-ghost/70">
-            Enquire about a specific vehicle, arrange a private viewing, or begin a bespoke
-            commission. A member of our concierge team will reply within 24 hours.
+          <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
+            Questions about a vehicle, financing, or a trade-in? Send us a message or stop by our
+            Houston lot — we usually reply within one business day.
           </p>
         </div>
       </section>
@@ -122,10 +127,10 @@ function Contact() {
                   <option value="" disabled>
                     Select an option
                   </option>
-                  <option>Purchase Enquiry</option>
-                  <option>Private Viewing</option>
-                  <option>Bespoke Commission</option>
-                  <option>Consignment</option>
+                  <option>Buying a Car</option>
+                  <option>Schedule a Test Drive</option>
+                  <option>Financing Question</option>
+                  <option>Sell or Trade My Car</option>
                 </select>
               </div>
 
@@ -169,7 +174,7 @@ function Contact() {
 
           <div className="lg:col-span-5">
             <div className="border-t border-onyx/10 pt-10">
-              <h2 className="text-[10px] font-semibold uppercase tracking-[0.3em]">Showrooms</h2>
+              <h2 className="text-[10px] font-semibold uppercase tracking-[0.3em]">Our Location</h2>
               <div className="mt-10 space-y-10">
                 {showrooms.map((s) => (
                   <div key={s.city}>
@@ -184,7 +189,7 @@ function Contact() {
               </div>
 
               <div className="mt-16 border-t border-onyx/10 pt-8 space-y-2 text-sm">
-                <p className="text-[10px] uppercase tracking-[0.25em] text-silver">Concierge</p>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-silver">Sales Team</p>
                 <p>chronovaluemotor@gmail.com</p>
                 <p>+1 (347) 666 1572</p>
                 <a

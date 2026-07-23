@@ -9,12 +9,13 @@ export function SiteFooter() {
             Chrono Value Auto
           </div>
           <p className="mt-6 max-w-xs text-xs leading-relaxed text-silver">
-            The intersection of architectural form and extreme performance. Established 2026. By
-            appointment only.
+            Quality used cars, fair prices, and straightforward service. Houston, Texas.
           </p>
         </div>
         <div>
-          <h4 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em]">Experience</h4>
+          <h4 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em]">
+            Quick Links
+          </h4>
           <ul className="space-y-4 text-xs text-silver">
             <li>
               <Link to="/inventory" className="hover:text-onyx transition-colors">
@@ -23,12 +24,12 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/contact" className="hover:text-onyx transition-colors">
-                Showroom Finder
+                Visit Us
               </Link>
             </li>
             <li>
               <Link to="/about" className="hover:text-onyx transition-colors">
-                The Atelier
+                About Us
               </Link>
             </li>
           </ul>

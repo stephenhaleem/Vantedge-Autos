@@ -43,11 +43,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Chrono Value Auto — Premium Cars, Curated" },
+      { title: "Chrono Value Auto — Quality Used Cars in Katy, TX" },
       {
         name: "description",
         content:
-          "Chrono Value Auto curates a private collection of premium performance, electric, heritage, and hypercars. Viewing by appointment.",
+          "Chrono Value Auto is a Houston, Texas used car dealership. Every vehicle inspected, fair pricing, flexible financing.",
       },
       { name: "author", content: "Chrono Value Auto" },
       { property: "og:title", content: "Chrono Value Auto — Premium Cars, Curated" },

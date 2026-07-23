@@ -5,36 +5,36 @@ import { formatPrice } from "@/lib/cars";
 export const Route = createFileRoute("/collections")({
   head: () => ({
     meta: [
-      { title: "Collections — Chrono Value Auto" },
+      { title: "Browse by Type — Chrono Value Auto" },
       {
         name: "description",
         content:
-          "Themed collections at Chrono Value Auto: Electric, Performance, Heritage, and Hypercar.",
+          "Browse our Houston, TX inventory by vehicle type: Sedans, SUVs, Trucks, and Coupes.",
       },
-      { property: "og:title", content: "Collections — Chrono Value Auto" },
+      { property: "og:title", content: "Browse by Type — Chrono Value Auto" },
       {
         property: "og:description",
-        content: "Explore themed collections of curated automobiles at Chrono Value Auto.",
+        content: "Find the right vehicle type for you at Chrono Value Auto in Houston, Texas.",
       },
     ],
   }),
   component: Collections,
 });
 
-const groups = ["Electric", "Performance", "Heritage", "Hypercar"] as const;
+const groups = ["Sedans", "SUVs", "Trucks", "Coupes"] as const;
 
 function Collections() {
   const { data: cars = [] } = useCars();
   return (
     <div className="bg-ghost">
       <section className="mx-auto max-w-7xl px-6 pt-24 pb-16 animate-reveal">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Curated Groups</p>
+        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Shop By Type</p>
         <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
-          Collections.
+          Browse by Type.
         </h1>
         <p className="mt-8 max-w-lg text-base leading-relaxed text-onyx/75">
-          Vehicles organised by philosophy. Each collection reflects a specific era, engineering
-          discipline, or design intent.
+          Not sure where to start? Browse our current inventory grouped by vehicle type to find what
+          fits your life.
         </p>
       </section>
 

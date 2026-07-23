@@ -26,12 +26,12 @@ const sections = [
     title: "Viewing & Appointments",
     items: [
       {
-        q: "Can I view a vehicle before enquiring?",
-        a: "Yes. All viewings are by private appointment at our Los Angeles, London, or Milan showrooms. Reach out via the Concierge and we'll schedule a time that suits you, including after-hours viewings on request.",
+        q: "Can I test drive a vehicle before buying?",
+        a: "Absolutely. Stop by our Houston lot any day we're open, no appointment needed, and take any vehicle for a spin.",
       },
       {
-        q: "Do you offer virtual viewings?",
-        a: "We can arrange a live video walkaround with a specialist for vehicles you can't view in person, including close-up detail on any area of the car.",
+        q: "Do you offer virtual walkarounds?",
+        a: "Yes — if you can't make it in person, we can arrange a live video walkaround of any vehicle on our lot.",
       },
     ],
   },

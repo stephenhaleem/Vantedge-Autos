@@ -128,7 +128,7 @@ function CarDetail() {
                 >
                   <span className="absolute inset-0 -translate-x-full bg-champagne transition-transform duration-500 ease-out group-hover:translate-x-0" />
                   <span className="relative transition-colors duration-500 group-hover:text-onyx">
-                    Reserve This Vehicle
+                    Ask About This Car
                   </span>
                 </Link>
                 <Link
@@ -136,7 +136,7 @@ function CarDetail() {
                   search={{ car: car.name, interest: "Private Viewing" }}
                   className="flex h-14 items-center justify-center border border-onyx/15 text-[11px] font-medium uppercase tracking-[0.25em] hover:bg-onyx/5"
                 >
-                  Book a Viewing
+                  Schedule a Test Drive
                 </Link>
                 <button
                   type="button"
@@ -185,7 +185,7 @@ function CarDetail() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex items-end justify-between">
             <h2 className="font-heading text-3xl font-light tracking-tight md:text-4xl">
-              Also in the collection
+              you Might Also Like
             </h2>
             <Link
               to="/inventory"

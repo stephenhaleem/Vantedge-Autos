@@ -106,8 +106,7 @@ function SelectField({
 }
 
 /* ── Constants ── */
-
-const CATEGORIES: Category[] = ["Electric", "Performance", "Heritage", "Hypercar"];
+const CATEGORIES: Category[] = ["Sedans", "SUVs", "Trucks", "Coupes"];
 const FUEL_TYPES: FuelType[] = ["Petrol", "Electric", "Hybrid", "Diesel"];
 
 const SPEC_FIELDS: { key: keyof Car["specs"]; label: string }[] = [

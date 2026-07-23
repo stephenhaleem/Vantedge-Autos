@@ -13,6 +13,7 @@ const currentYear = new Date().getFullYear();
 
 const searchSchema = z.object({
   q: fallback(z.string(), "").default(""),
+  category: fallback(z.string(), "").default(""),
   make: fallback(z.string(), "").default(""),
   model: fallback(z.string(), "").default(""),
   fuel: fallback(z.string(), "").default(""),
@@ -74,6 +75,7 @@ function Inventory() {
         q: "",
         make: "",
         model: "",
+        category: "",
         fuel: "",
         yearMin: yearBounds.min,
         yearMax: yearBounds.max,
@@ -99,6 +101,7 @@ function Inventory() {
       if (search.fuel && c.fuelType !== search.fuel) return false;
       if (c.year < search.yearMin || c.year > search.yearMax) return false;
       if (c.price < search.priceMin || c.price > search.priceMax) return false;
+      if (search.category && c.category !== search.category) return false;
       return true;
     });
   }, [search, cars]);
@@ -110,6 +113,7 @@ function Inventory() {
     search.q && { k: "q", label: `“${search.q}”` },
     search.make && { k: "make", label: search.make },
     search.model && { k: "model", label: search.model },
+    search.category && { k: "category", label: search.category },
     search.fuel && { k: "fuel", label: search.fuel },
     isYearActive && { k: "year", label: `${search.yearMin} – ${search.yearMax}` },
     isPriceActive && {
@@ -126,6 +130,8 @@ function Inventory() {
         return update({ make: "", model: "" });
       case "model":
         return update({ model: "" });
+      case "category":
+        return update({ category: "" });
       case "fuel":
         return update({ fuel: "" });
       case "year":
@@ -151,9 +157,8 @@ function Inventory() {
               <span className="italic">Inventory.</span>
             </h1>
             <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
-              Each vehicle in the Chrono Value Auto collection is inspected, documented, and
-              prepared by our master technicians. Viewing available in Los Angeles, London, and
-              Milan by appointment.
+              Every vehicle on our lot is inspected and documented before it's listed. Stop by our
+              Houston, TX location any day we're open — no appointment necessary.
             </p>
           </div>
         </div>
@@ -206,6 +211,12 @@ function Inventory() {
                   value={search.make}
                   onChange={(v) => update({ make: v, model: "" })}
                   options={allMakes}
+                />
+                <FilterSelect
+                  label="Type"
+                  value={search.category}
+                  onChange={(v) => update({ category: v })}
+                  options={["Sedans", "SUVs", "Trucks", "Coupes"]}
                 />
                 <FilterSelect
                   label="Model"

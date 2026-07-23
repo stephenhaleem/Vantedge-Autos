@@ -236,10 +236,11 @@ function Home() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
           <div className="max-w-2xl animate-reveal">
             <span className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.35em] text-ghost/70">
-              Series I — Available Now
+              Texas — Open 7 Days
             </span>
             <h1 className="mb-10 text-ghost font-heading text-7xl font-light leading-[0.9] tracking-tighter md:text-9xl lg:text-[10rem]">
-              Define <br />
+              Find Your
+              <br />
               <RotatingWord interval={5000} />
             </h1>
             <div className="flex flex-wrap items-center gap-8">
@@ -308,12 +309,12 @@ function Home() {
           <div className="px-6 py-12 text-center md:text-left">
             <div
               className="stat-value font-heading text-5xl font-light tracking-tight"
-              data-value="60"
+              data-value="150"
             >
-              60+
+              150+
             </div>
             <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-silver">
-              Prep Hours Per Car
+              Point Inspection
             </div>
           </div>
         </div>
@@ -323,12 +324,11 @@ function Home() {
       <section className="mx-auto max-w-7xl px-6 py-40" ref={categoriesRef}>
         <div className="mb-20 flex flex-col items-end justify-between gap-8 md:flex-row">
           <div>
-            <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-silver">
-              The Collection
-            </p>
+            <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-silver">On The Lot</p>
             <h2 className="font-heading text-5xl font-light md:text-6xl">
-              Current <br />
-              <span className="italic">Selected Works.</span>
+              Just
+              <br />
+              <span className="italic">Arived</span>
             </h2>
           </div>
           <Link
@@ -389,9 +389,9 @@ function Home() {
                     <polyline points="9 12 11 14 15 10" />
                   </svg>
                 ),
-                title: "Curated Collection",
-                desc: "Every vehicle is personally vetted — never mass-sourced. Only the finest examples earn a place in our inventory.",
-                stats: "10+ years curating",
+                title: "Every Car Inspected",
+                desc: "Nothing goes on our lot without a full mechanical and safety check first.",
+                stats: "150-point inspection",
               },
               {
                 number: "02",
@@ -410,9 +410,9 @@ function Home() {
                     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                   </svg>
                 ),
-                title: "Expert Preparation",
-                desc: "Master technicians spend 60+ hours on each vehicle — mechanical, cosmetic, and documentary.",
-                stats: "2,400+ hours prepared",
+                title: "Fair, Transparent Pricing",
+                desc: "No hidden fees, no surprise add-ons. The price you see is the price you pay.",
+                stats: "No hidden fees",
               },
               {
                 number: "03",
@@ -432,9 +432,9 @@ function Home() {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 ),
-                title: "Discreet Service",
-                desc: "Viewings are private, records confidential. Every transaction is handled by a dedicated concierge.",
-                stats: "100% confidential",
+                title: "Friendly Local Service",
+                desc: "We're a Houston business — you'll talk to the same team before and after the sale.",
+                stats: "Houston, TX",
               },
               {
                 number: "04",
@@ -455,9 +455,9 @@ function Home() {
                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   </svg>
                 ),
-                title: "Global Reach",
-                desc: "Based in Texas with white-glove logistics and delivery available worldwide.",
-                stats: "Delivery Internationally",
+                title: "Easy Financing",
+                desc: "We work with multiple lenders to find a payment plan that fits your budget.",
+                stats: "Flexible financing",
               },
             ].map((item) => (
               <div key={item.title} className="why-card group relative">
@@ -512,22 +512,22 @@ function Home() {
           </div>
           <div className="w-full md:w-1/2">
             <p className="mb-6 text-[11px] font-medium uppercase tracking-[0.35em] text-silver">
-              The Atelier
+              Built on trust, not hype.
             </p>
             <h2 className="mb-8 font-heading text-5xl font-light leading-[1.05] tracking-tight md:text-6xl">
-              Tailored to your <br />
-              <span className="italic">distinctive pulse.</span>
+              Financing
+              <br />
+              <span className="italic">actually makes sense</span>
             </h2>
             <p className="mb-12 max-w-md text-sm leading-relaxed text-silver">
-              Every Chrono Value Auto vehicle is an extension of its owner. Through our Bespoke
-              Studio, you access a library of exclusive materials, custom finishes, and engineering
-              adjustments that ensure your car is as unique as your thumbprint.
+              We work with a range of lenders to get you a rate that fits your budget, whether your
+              credit is great or you're still building it. Get pre-qualified in minutes.
             </p>
             <Link
               to="/about"
               className="group flex items-center text-[12px] font-medium uppercase tracking-[0.25em]"
             >
-              Begin Commission
+              Ask About Financing
               <span className="ml-4 h-px w-12 bg-ghost transition-all duration-500 group-hover:w-24" />
             </Link>
           </div>
@@ -543,25 +543,24 @@ function Home() {
                 About Chrono Value Auto
               </p>
               <h2 className="font-heading text-5xl font-light leading-tight tracking-tight md:text-6xl">
-                More than a dealership — <br />
-                <span className="italic">a curator's mindset.</span>
+                A dealership that
+                <br />
+                <span className="italic">treats your right.</span>
               </h2>
             </div>
             <div className="md:col-span-7">
               <div className="about-block">
                 <p className="text-base leading-relaxed text-onyx/75">
-                  Chrono Value Auto was founded on a simple belief: the right car changes how you
-                  experience the road. Every vehicle we present is selected not just for its
-                  specification or mileage, but for the feeling it stirs — the hum of a flat-six at
-                  dawn, the heft of a hand-stitched wheel, the quiet confidence of knowing you're
-                  driving something extraordinary.
+                  Chrono Value Auto has been buying, selling, and trading vehicles in Houston since
+                  2015. We're not a big-box lot — every car on our property has been personally
+                  checked out by our team before it's offered for sale.
                 </p>
               </div>
               <div className="about-block">
                 <p className="mt-6 text-base leading-relaxed text-onyx/75">
-                  Our team brings decades of combined experience across motorsport, restoration, and
-                  fine art. We treat each consignment as a collaboration — honouring the story of
-                  the car while preparing it for the next chapter.
+                  We know buying a used car can feel like a gamble. Our job is to make sure it isn't
+                  — clear pricing, honest answers about a vehicle's history, and a team that's still
+                  around if something comes up after the sale.
                 </p>
               </div>
               <div className="about-block">
@@ -591,9 +590,8 @@ function Home() {
                 <span className="italic">The next chapter starts here.</span>
               </h2>
               <p className="mt-8 max-w-md text-sm leading-relaxed text-silver">
-                Whether you're looking to upgrade your current ride, consign a prized possession, or
-                begin a bespoke commission, our concierge team is standing by. We make the process
-                seamless — from valuation to delivery.
+                Looking to upgrade, sell outright, or finance your next vehicle? Our team makes the
+                process simple — from valuation to paperwork to driving off the lot.
               </p>
               <div className="mt-12 flex flex-wrap gap-6">
                 <Link

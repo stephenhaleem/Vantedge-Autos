@@ -6,12 +6,11 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 
 const links = [
   { to: "/inventory", label: "Inventory" },
-  { to: "/collections", label: "Collections" },
-  { to: "/about", label: "Atelier" },
+  { to: "/collections", label: "Browse by Type" },
+  { to: "/about", label: "About Us" },
   { to: "/faq", label: "FAQ" },
-  { to: "/contact", label: "Showrooms" },
+  { to: "/contact", label: "Contact" },
 ] as const;
-
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const { shortlistIds, compareIds } = useCarLists();
