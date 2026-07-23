@@ -158,7 +158,7 @@ function Inventory() {
             </h1>
             <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
               Every vehicle on our lot is inspected and documented before it's listed. Stop by our
-              Houston, TX location any day we're open — no appointment necessary.
+              Katy, TX location any day we're open — no appointment necessary.
             </p>
           </div>
         </div>

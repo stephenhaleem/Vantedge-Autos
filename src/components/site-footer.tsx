@@ -10,7 +10,7 @@ export function SiteFooter() {
             <img src={logo} alt="Chrono Value Auto" className="h-29 w-auto brightness-0" />
           </Link>
           <p className="mx-auto mt-6 max-w-xs text-xs leading-relaxed text-silver sm:mx-0">
-            Quality used cars, fair prices, and straightforward service. Houston, Texas.
+            Quality used cars, fair prices, and straightforward service. Katy, Texas.
           </p>
         </div>
         <div>

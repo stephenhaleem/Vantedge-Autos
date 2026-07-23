@@ -8,13 +8,12 @@ export const Route = createFileRoute("/collections")({
       { title: "Browse by Type — Chrono Value Auto" },
       {
         name: "description",
-        content:
-          "Browse our Houston, TX inventory by vehicle type: Sedans, SUVs, Trucks, and Coupes.",
+        content: "Browse our Katy, TX inventory by vehicle type: Sedans, SUVs, Trucks, and Coupes.",
       },
       { property: "og:title", content: "Browse by Type — Chrono Value Auto" },
       {
         property: "og:description",
-        content: "Find the right vehicle type for you at Chrono Value Auto in Houston, Texas.",
+        content: "Find the right vehicle type for you at Chrono Value Auto in Katy, Texas.",
       },
     ],
   }),

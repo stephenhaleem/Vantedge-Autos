@@ -27,7 +27,7 @@ const sections = [
     items: [
       {
         q: "Can I test drive a vehicle before buying?",
-        a: "Absolutely. Stop by our Houston lot any day we're open, no appointment needed, and take any vehicle for a spin.",
+        a: "Absolutely. Stop by our Katy lot any day we're open, no appointment needed, and take any vehicle for a spin.",
       },
       {
         q: "Do you offer virtual walkarounds?",

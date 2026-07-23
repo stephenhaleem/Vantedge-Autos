@@ -56,8 +56,8 @@ function About() {
             Honest cars, <span className="italic">honest prices.</span>
           </h1>
           <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
-            Chrono Value Auto is a family-run used car dealership in Houston, Texas. We inspect
-            every vehicle we sell, price it fairly, and stick around after you drive off the lot.
+            Chrono Value Auto is a family-run used car dealership in Katy, Texas. We inspect every
+            vehicle we sell, price it fairly, and stick around after you drive off the lot.
           </p>
         </div>
       </section>

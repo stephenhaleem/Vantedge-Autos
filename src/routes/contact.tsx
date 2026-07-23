@@ -18,12 +18,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Chrono Value Auto, a used car dealership in Houston, Texas. Visit our lot or send us a message.",
+          "Contact Chrono Value Auto, a used car dealership in Katy, Texas. Visit our lot or send us a message.",
       },
       { property: "og:title", content: "Contact Us — Chrono Value Auto" },
       {
         property: "og:description",
-        content: "Visit our Houston, TX lot or reach our sales team online.",
+        content: "Visit our Katy, TX lot or reach our sales team online.",
       },
     ],
   }),
@@ -95,7 +95,7 @@ function Contact() {
           </h1>
           <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
             Questions about a vehicle, financing, or a trade-in? Send us a message or stop by our
-            Houston lot — we usually reply within one business day.
+            Katy lot — we usually reply within one business day.
           </p>
         </div>
       </section>

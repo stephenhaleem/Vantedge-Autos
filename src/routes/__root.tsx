@@ -47,7 +47,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Chrono Value Auto is a Houston, Texas used car dealership. Every vehicle inspected, fair pricing, flexible financing.",
+          "Chrono Value Auto is a Katy, Texas used car dealership. Every vehicle inspected, fair pricing, flexible financing.",
       },
       { name: "author", content: "Chrono Value Auto" },
       { property: "og:title", content: "Chrono Value Auto — Premium Cars, Curated" },

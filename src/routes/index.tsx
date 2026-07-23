@@ -433,8 +433,8 @@ function Home() {
                   </svg>
                 ),
                 title: "Friendly Local Service",
-                desc: "We're a Houston business — you'll talk to the same team before and after the sale.",
-                stats: "Houston, TX",
+                desc: "We're a Katy business — you'll talk to the same team before and after the sale.",
+                stats: "Katy, TX",
               },
               {
                 number: "04",
@@ -551,7 +551,7 @@ function Home() {
             <div className="md:col-span-7">
               <div className="about-block">
                 <p className="text-base leading-relaxed text-onyx/75">
-                  Chrono Value Auto has been buying, selling, and trading vehicles in Houston since
+                  Chrono Value Auto has been buying, selling, and trading vehicles in Katy since
                   2015. We're not a big-box lot — every car on our property has been personally
                   checked out by our team before it's offered for sale.
                 </p>
