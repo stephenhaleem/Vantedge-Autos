@@ -4,12 +4,12 @@ import logo from "@/assets/logo.png";
 export function SiteFooter() {
   return (
     <footer className="border-t border-onyx/5 bg-ghost px-6 py-20">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-12 md:grid-cols-4">
-        <div className="col-span-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="sm:col-span-2 lg:col-span-1 text-center sm:text-left">
           <Link to="/" className="inline-block">
             <img src={logo} alt="Chrono Value Auto" className="h-29 w-auto brightness-0" />
           </Link>
-          <p className="mt-6 max-w-xs text-xs leading-relaxed text-silver">
+          <p className="mx-auto mt-6 max-w-xs text-xs leading-relaxed text-silver sm:mx-0">
             Quality used cars, fair prices, and straightforward service. Houston, Texas.
           </p>
         </div>
@@ -51,17 +51,10 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto mt-20 flex max-w-7xl items-center justify-between border-t border-onyx/5 pt-8 text-[10px] uppercase tracking-[0.25em] text-silver">
-        <span>© 2026 Chrono Value Auto</span>
-        <div className="flex gap-6">
+      <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center gap-6 border-t border-onyx/5 pt-8 text-center text-[10px] uppercase tracking-[0.25em] text-silver sm:flex-row sm:justify-between sm:text-left">
+        <div className="flex flex-wrap justify-center gap-4 sm:justify-end sm:gap-6">
           <a href="#" className="hover:text-onyx">
             Instagram
-          </a>
-          <a href="#" className="hover:text-onyx">
-            Youtube
-          </a>
-          <a href="#" className="hover:text-onyx">
-            Journal
           </a>
         </div>
       </div>
