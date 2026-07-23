@@ -33,8 +33,8 @@ export const Route = createFileRoute("/contact")({
 const showrooms = [
   {
     city: "Texas",
-    address: "2425 W Loop S Fwy",
-    region: "Houston, TX 77027",
+    address: "26103 Beckendorff Road",
+    region: "Katy, TX 77494",
     hours: "By Appointment",
   },
 ];

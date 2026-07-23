@@ -255,7 +255,7 @@ function Home() {
               </Link>
               <div className="flex items-center text-[12px] font-medium uppercase tracking-[0.25em] text-ghost">
                 <span className="mr-4 h-px w-14 bg-ghost" />
-                Starting at {formatPrice(minPrice)}
+                used • cheap • reliable
               </div>
             </div>
           </div>
@@ -545,7 +545,7 @@ function Home() {
               <h2 className="font-heading text-5xl font-light leading-tight tracking-tight md:text-6xl">
                 A dealership that
                 <br />
-                <span className="italic">treats your right.</span>
+                <span className="italic">treats you right.</span>
               </h2>
             </div>
             <div className="md:col-span-7">
@@ -600,7 +600,7 @@ function Home() {
                 >
                   <span className="absolute inset-0 -translate-x-full bg-champagne transition-transform duration-500 ease-out group-hover:translate-x-0" />
                   <span className="relative transition-colors duration-500 group-hover:text-onyx">
-                    Speak With Concierge
+                    Speak With Us
                   </span>
                 </Link>
                 <Link
@@ -616,24 +616,22 @@ function Home() {
             <div className="relative min-h-[500px] md:min-h-full" ref={mapRef}>
               <div className="absolute inset-0 border-l border-ghost/10">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3462.789128537233!2d-95.4566192!3d29.7740092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c5f1e1e1e1e1%3A0x0!2s2425%20W%20Loop%20S%20Fwy%2C%20Houston%2C%20TX%2077027!5e0!3m2!1sen!2sus!4v1"
+                  src="https://www.google.com/maps?q=26103+Beckendorff+Road,+Katy,+TX+77493&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Chrono Value Auto Showroom — Texas"
+                  title="Chrono Value Auto Showroom — Katy, TX"
                   className="grayscale transition-all duration-1000 hover:grayscale-0"
                 />
               </div>
               <div className="absolute bottom-8 left-6 right-6 z-10">
                 <div className="bg-onyx/85 backdrop-blur-md border border-ghost/10 px-6 py-5">
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-silver">
-                    Texas Showroom
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-silver">Texas Lot</p>
                   <p className="mt-1 font-heading text-lg font-light tracking-tight">
-                    2425 W Loop S Fwy, Houston, TX 77027
+                    26103 Beckendorff Road, Katy 77493
                   </p>
                   <p className="mt-0.5 text-sm text-silver">By appointment only</p>
                 </div>
