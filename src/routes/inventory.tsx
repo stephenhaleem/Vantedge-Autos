@@ -153,7 +153,7 @@ function Inventory() {
       </section>
 
       {/* Search bar */}
-      <section className="sticky top-[110px] z-30 border-y border-onyx/10 bg-ghost/90 backdrop-blur-xl">
+      <section className="fixed top-[110px] left-0 right-0 z-30 border-y border-onyx/10 bg-ghost/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
           <div className="relative flex-1">
             <Search
@@ -187,67 +187,71 @@ function Inventory() {
 
         {/* Filter panel */}
         <div
-          className={`overflow-hidden border-t border-onyx/10 transition-[max-height] duration-500 ease-out ${
-            panelOpen ? "max-h-[600px]" : "max-h-0"
+          className={`transition-all duration-500 ease-out ${
+            panelOpen ? "max-h-[80vh]" : "max-h-0 overflow-hidden"
           }`}
         >
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-8 md:grid-cols-2 lg:grid-cols-4">
-            <FilterSelect
-              label="Make"
-              value={search.make}
-              onChange={(v) => update({ make: v, model: "" })}
-              options={allMakes}
-            />
-            <FilterSelect
-              label="Model"
-              value={search.model}
-              onChange={(v) => update({ model: v })}
-              options={modelsForMake}
-              disabled={modelsForMake.length === 0}
-            />
-            <FilterSelect
-              label="Fuel Type"
-              value={search.fuel}
-              onChange={(v) => update({ fuel: v })}
-              options={allFuelTypes}
-            />
-            <div>
-              <label className="mb-3 block text-[10px] font-medium uppercase tracking-[0.3em] text-silver">
-                Year Range
-              </label>
-              <div className="flex items-center gap-3">
-                <NumberInput
-                  value={search.yearMin}
-                  onChange={(v) => update({ yearMin: Math.min(v, search.yearMax) })}
+          <div className="overflow-y-auto border-t border-onyx/10">
+            <div className="mx-auto max-w-7xl px-6 py-8">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <FilterSelect
+                  label="Make"
+                  value={search.make}
+                  onChange={(v) => update({ make: v, model: "" })}
+                  options={allMakes}
                 />
-                <span className="text-silver">—</span>
-                <NumberInput
-                  value={search.yearMax}
-                  onChange={(v) => update({ yearMax: Math.max(v, search.yearMin) })}
+                <FilterSelect
+                  label="Model"
+                  value={search.model}
+                  onChange={(v) => update({ model: v })}
+                  options={modelsForMake}
+                  disabled={modelsForMake.length === 0}
                 />
-              </div>
-            </div>
-            <div className="md:col-span-2 lg:col-span-4">
-              <label className="mb-3 block text-[10px] font-medium uppercase tracking-[0.3em] text-silver">
-                Price Range — {formatPrice(search.priceMin)} to {formatPrice(search.priceMax)}
-              </label>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <RangeSlider
-                  label="Minimum"
-                  min={priceBounds.min}
-                  max={priceBounds.max}
-                  step={1000}
-                  value={search.priceMin}
-                  onChange={(v) => update({ priceMin: Math.min(v, search.priceMax) })}
+                <FilterSelect
+                  label="Fuel Type"
+                  value={search.fuel}
+                  onChange={(v) => update({ fuel: v })}
+                  options={allFuelTypes}
                 />
-                <RangeSlider
-                  label="Maximum"
-                  min={priceBounds.min}
-                  max={priceBounds.max}
-                  step={1000}
-                  value={search.priceMax}
-                  onChange={(v) => update({ priceMax: Math.max(v, search.priceMin) })}
-                />
+                <div>
+                  <label className="mb-3 block text-[10px] font-medium uppercase tracking-[0.3em] text-silver">
+                    Year Range
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <NumberInput
+                      value={search.yearMin}
+                      onChange={(v) => update({ yearMin: Math.min(v, search.yearMax) })}
+                    />
+                    <span className="text-silver">—</span>
+                    <NumberInput
+                      value={search.yearMax}
+                      onChange={(v) => update({ yearMax: Math.max(v, search.yearMin) })}
+                    />
+                  </div>
+                </div>
+                <div className="md:col-span-2 lg:col-span-4">
+                  <label className="mb-3 block text-[10px] font-medium uppercase tracking-[0.3em] text-silver">
+                    Price Range — {formatPrice(search.priceMin)} to {formatPrice(search.priceMax)}
+                  </label>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <RangeSlider
+                      label="Minimum"
+                      min={priceBounds.min}
+                      max={priceBounds.max}
+                      step={1000}
+                      value={search.priceMin}
+                      onChange={(v) => update({ priceMin: Math.min(v, search.priceMax) })}
+                    />
+                    <RangeSlider
+                      label="Maximum"
+                      min={priceBounds.min}
+                      max={priceBounds.max}
+                      step={1000}
+                      value={search.priceMax}
+                      onChange={(v) => update({ priceMax: Math.max(v, search.priceMin) })}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -255,7 +259,7 @@ function Inventory() {
       </section>
 
       {/* Active filter chips */}
-      <section className="mx-auto max-w-7xl px-6 pt-8">
+      <section className="mx-auto max-w-7xl px-6 pt-24">
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-[10px] uppercase tracking-[0.25em] text-silver">
             {list.length} {list.length === 1 ? "Vehicle" : "Vehicles"}
