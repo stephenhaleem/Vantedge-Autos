@@ -93,6 +93,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <CarListsProvider>
+        <SiteLoader />
         <SiteHeader />
         <main className="pt-[110px]">
           <Outlet />
