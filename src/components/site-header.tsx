@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useCarLists } from "@/lib/use-car-lists";
 import { Heart, GitCompareArrows, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import logo from "@/assets/logo.png";
 
 const links = [
   { to: "/inventory", label: "Inventory" },
@@ -37,21 +38,14 @@ export function SiteHeader() {
         }`}
       >
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="group flex items-baseline gap-1 sm:gap-2">
-            <span
-              className={`font-heading text-xl sm:text-2xl font-semibold uppercase tracking-tighter transition-colors ${
-                isGhost ? "text-onyx" : "text-white"
+          <Link to="/" className="flex items-center">
+            <img
+              src={logo}
+              alt="Chrono Value Auto"
+              className={`h-20 w-auto transition-all duration-300 ${
+                isGhost ? "brightness-0" : "brightness-0 invert"
               }`}
-            >
-              Chrono
-            </span>
-            <span
-              className={`text-[7px] sm:text-[9px] font-medium uppercase tracking-[0.3em] transition-opacity ${
-                isGhost ? "text-silver" : "text-white/60"
-              }`}
-            >
-              Value Auto
-            </span>
+            />
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">

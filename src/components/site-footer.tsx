@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/logo.png";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-onyx/5 bg-ghost px-6 py-20">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-12 md:grid-cols-4">
         <div className="col-span-2">
-          <div className="font-heading text-2xl font-semibold uppercase tracking-tighter">
-            Chrono Value Auto
-          </div>
+          <Link to="/" className="inline-block">
+            <img src={logo} alt="Chrono Value Auto" className="h-29 w-auto brightness-0" />
+          </Link>
           <p className="mt-6 max-w-xs text-xs leading-relaxed text-silver">
             Quality used cars, fair prices, and straightforward service. Houston, Texas.
           </p>
