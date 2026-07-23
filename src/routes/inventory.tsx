@@ -7,6 +7,7 @@ import { CarCardSkeleton } from "@/components/car-card-skeleton";
 import { useCars } from "@/lib/use-cars";
 import { deriveFacets, formatPrice } from "@/lib/cars";
 import { CarCard } from "@/components/car-card";
+import horizon from "@/assets/thinh.jpg";
 
 const currentYear = new Date().getFullYear();
 
@@ -136,18 +137,25 @@ function Inventory() {
 
   return (
     <div className="bg-ghost">
-      <section className="mx-auto max-w-7xl px-6 pb-12 pt-24">
-        <div className="animate-reveal">
-          <p className="text-[10px] uppercase tracking-[0.35em] text-silver">The Collection</p>
-          <h1 className="mt-4 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
-            Current <br />
-            <span className="italic">Inventory.</span>
-          </h1>
-          <p className="mt-8 max-w-lg text-sm leading-relaxed text-silver">
-            Each vehicle in the Chrono Value Auto collection is inspected, documented, and prepared
-            by our master technicians. Viewing available in Los Angeles, London, and Milan by
-            appointment.
-          </p>
+      <section className="relative -mt-[110px] flex items-center overflow-hidden bg-onyx min-h-[60vh] md:min-h-[70vh] pt-[110px]">
+        <div className="absolute inset-0 z-0">
+          <img src={horizon} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-onyx/40 to-onyx/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-onyx/60 to-transparent" />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-12">
+          <div className="animate-reveal">
+            <p className="text-[10px] uppercase tracking-[0.35em] text-ghost/60">The Collection</p>
+            <h1 className="mt-4 font-heading text-5xl font-light leading-none tracking-tighter text-ghost md:text-7xl">
+              Current <br />
+              <span className="italic">Inventory.</span>
+            </h1>
+            <p className="mt-8 max-w-lg text-sm leading-relaxed text-ghost/70">
+              Each vehicle in the Chrono Value Auto collection is inspected, documented, and
+              prepared by our master technicians. Viewing available in Los Angeles, London, and
+              Milan by appointment.
+            </p>
+          </div>
         </div>
       </section>
 

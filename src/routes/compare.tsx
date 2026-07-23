@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCars } from "@/lib/use-cars";
 import { type Car, formatPrice } from "@/lib/cars";
 import { useCarLists } from "@/lib/use-car-lists";
+import compareBg from "@/assets/martin-katler-e3gVocvZ-g0-unsplash.jpg";
 
 export const Route = createFileRoute("/compare")({
   head: () => ({
@@ -34,11 +35,18 @@ function ComparePage() {
 
   return (
     <div className="bg-ghost">
-      <section className="mx-auto max-w-7xl px-6 pt-24 pb-12">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Side by Side</p>
-        <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-6xl">
-          Compare Vehicles.
-        </h1>
+      <section className="relative -mt-[110px] flex items-center overflow-hidden bg-onyx min-h-[50vh] md:min-h-[60vh] pt-[110px]">
+        <div className="absolute inset-0 z-0">
+          <img src={compareBg} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-onyx/40 to-onyx/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-onyx/60 to-transparent" />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-12">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-ghost/60">Side by Side</p>
+          <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter text-ghost md:text-6xl">
+            Compare Vehicles.
+          </h1>
+        </div>
       </section>
 
       {selected.length === 0 ? (

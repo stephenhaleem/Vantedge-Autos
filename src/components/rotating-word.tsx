@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const DEFAULT_WORDS = ["Velocity.", "Precision.", "Obsession.", "Legacy."];
+const DEFAULT_WORDS = ["Quality.", "Value.", "Reliability.", "Confidence."];
 
 export function RotatingWord({
   words = DEFAULT_WORDS,

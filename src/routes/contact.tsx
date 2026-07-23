@@ -3,6 +3,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { useRef, useState } from "react";
 import { sendContactEmail } from "@/lib/send-contact";
+import ignition from "@/assets/car-ignition.jpg";
 
 const contactSearchSchema = z.object({
   car: fallback(z.string(), "").default(""),
@@ -85,12 +86,13 @@ function Contact() {
       <section className="mx-auto max-w-7xl px-6 pt-24 pb-16 animate-reveal">
         <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Concierge</p>
         <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
-          Speak with us.
-        </h1>
-        <p className="mt-8 max-w-lg text-base leading-relaxed text-onyx/75">
-          Enquire about a specific vehicle, arrange a private viewing, or begin a bespoke
-          commission. A member of our concierge team will reply within 24 hours.
-        </p>
+            Speak with us.
+          </h1>
+          <p className="mt-8 max-w-lg text-base leading-relaxed text-ghost/70">
+            Enquire about a specific vehicle, arrange a private viewing, or begin a bespoke
+            commission. A member of our concierge team will reply within 24 hours.
+          </p>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-32">

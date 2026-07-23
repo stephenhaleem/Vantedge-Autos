@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import showroom from "@/assets/showroom.jpg";
+import showroom from "@/assets/yellow-sport-car-with-black-autotuning-bridge (1).jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,9 +48,9 @@ function About() {
             An atelier for the <span className="italic">quietly obsessed.</span>
           </h1>
           <p className="mt-10 max-w-xl text-base leading-relaxed text-onyx/75">
-            Chrono Value Auto began as the private collection of a single family. Today it is a curated house
-            serving a small circle of collectors who value provenance, preparation, and privacy over
-            showroom theatre.
+            Chrono Value Auto began as the private collection of a single family. Today it is a
+            curated house serving a small circle of collectors who value provenance, preparation,
+            and privacy over showroom theatre.
           </p>
         </div>
       </section>

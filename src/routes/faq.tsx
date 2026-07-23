@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import silverstone from "@/assets/car-silverstone.jpg";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
@@ -91,11 +92,18 @@ const sections = [
 function Faq() {
   return (
     <div className="bg-ghost">
-      <section className="mx-auto max-w-4xl px-6 pt-24 pb-16">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-silver">Good to Know</p>
-        <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter md:text-7xl">
-          Frequently Asked.
-        </h1>
+      <section className="relative -mt-[110px] flex items-center overflow-hidden bg-onyx min-h-[55vh] md:min-h-[65vh] pt-[110px]">
+        <div className="absolute inset-0 z-0">
+          <img src={silverstone} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-onyx/40 to-onyx/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-onyx/60 to-transparent" />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-4xl px-6 pb-16">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-ghost/60">Good to Know</p>
+          <h1 className="mt-6 font-heading text-5xl font-light leading-none tracking-tighter text-ghost md:text-7xl">
+            Frequently Asked.
+          </h1>
+        </div>
       </section>
 
       <section className="mx-auto max-w-4xl px-6 pb-32 space-y-16">

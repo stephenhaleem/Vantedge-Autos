@@ -1,27 +1,19 @@
-# Completed Changes
+# Task: Rewrite Copy for California Retail Dealership
 
-## Homepage Content
+## Progress
 
-- [x] "Why Choose Us" section — 4 pillars with icons, descriptions, stats badges
-- [x] "About Chrono Value Auto" section — brand story + team background with GSAP reveals
-- [x] "Ready to Trade In + Map" section — dark CTA with Houston showroom map
-
-## Book a Viewing Flow
-
-- [x] "Book a Viewing" / "Reserve This Vehicle" buttons pass `?car=NAME&interest=TYPE` via search params
-- [x] Contact form auto-fills interest dropdown and message textarea from URL params
-
-## Nav Bar
-
-- [x] Homepage: transparent nav with white text
-- [x] Other pages: solid ghost nav with black text
-- [x] Homepage on scroll: transitions to solid with black text
-
-## Contact Form (Email via Resend)
-
-- [x] Resend installed (`npm install resend`)
-- [x] Server function created at `src/lib/send-contact.ts` using `createServerFn`
-- [x] Contact form submits via Resend API to chronovaluemotor@gmail.com
-- [x] Loading/error/success states implemented
-
-> **Note**: Set `RESEND_API_KEY` environment variable in production for email to work.
+- [ ] **`__root.tsx`** — Meta title & description
+- [ ] **`index.tsx`** — Hero, rotating words, stats, "Why Choose Us" cards, Atelier & About sections, Trade-in section
+- [ ] **`about.tsx`** — Hero text, value cards, CTA
+- [ ] **`contact.tsx`** — Meta, hero text, form interest options
+- [ ] **`faq.tsx`** — Meta, all FAQ Q&A content
+- [ ] **`collections.tsx`** — Meta, heading, body copy
+- [ ] **`inventory.tsx`** — Meta, hero text
+- [ ] **`compare.tsx`** — Meta
+- [ ] **`shortlist.tsx`** — Meta
+- [ ] **`cars.$carId.tsx`** — Button copy, related section heading
+- [ ] **`site-header.tsx`** — Navigation labels
+- [ ] **`site-footer.tsx`** — Tagline text
+- [ ] **`rotating-word.tsx`** — Words array
+- [ ] **`press-strip.tsx`** — Publication names
+- [ ] **`send-contact.ts`** — Email template header/title

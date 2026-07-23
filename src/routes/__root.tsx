@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CarListsProvider } from "@/lib/use-car-lists";
 import { CompareBar } from "@/components/compare-bar";
+import { SiteLoader } from "@/components/site-loader";
 
 function NotFoundComponent() {
   return (
@@ -32,43 +33,6 @@ function NotFoundComponent() {
         >
           Return Home
         </a>
-      </div>
-    </div>
-  );
-}
-
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-ghost px-4">
-      <div className="max-w-md text-center">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-silver">Something failed</p>
-        <h1 className="mt-4 font-heading text-3xl font-light tracking-tight text-onyx">
-          This page didn't load
-        </h1>
-        <p className="mt-3 text-sm text-silver">Try refreshing or head back home.</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex h-12 items-center justify-center bg-onyx px-8 text-[11px] font-medium uppercase tracking-[0.25em] text-ghost hover:bg-onyx/85"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex h-12 items-center justify-center border border-onyx/20 px-8 text-[11px] font-medium uppercase tracking-[0.25em] text-onyx hover:bg-onyx hover:text-ghost transition-colors"
-          >
-            Go home
-          </a>
-        </div>
       </div>
     </div>
   );
@@ -108,7 +72,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
 });
 
 function RootShell({ children }: { children: ReactNode }) {

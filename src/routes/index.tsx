@@ -16,6 +16,8 @@ import martin2 from "@/assets/martin-katler-Sr9dLwS_kjs-unsplash.jpg";
 import janse from "@/assets/janse.jpg";
 import thinh from "@/assets/thinh.jpg";
 import yuvraj from "@/assets/yuvraj.jpg";
+import showroom from "@/assets/showroom.jpg";
+import haha from "@/assets/davidknapp-engine-8239093_1920.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,7 +94,9 @@ function Home() {
   const statsRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLDivElement>(null);
   const whyRef = useRef<HTMLDivElement>(null);
+  const whyBgRef = useRef<HTMLDivElement>(null);
   const atelierRef = useRef<HTMLDivElement>(null);
+  const atelierImgRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const tradeRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -153,7 +157,48 @@ function Home() {
     return () => ctx.revert();
   }, [cars.length]);
 
+  // Why Choose parallax background
+  useEffect(() => {
+    const el = whyBgRef.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: whyRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        y: -80,
+        scale: 1.08,
+        ease: "none",
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
+  // Atelier image parallax
+  useEffect(() => {
+    const el = atelierImgRef.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: atelierRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        y: -60,
+        scale: 1.06,
+        ease: "none",
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
   const featured = cars.slice(0, 3);
+  const minPrice = cars.length > 0 ? Math.min(...cars.map((c) => c.price)) : 0;
 
   useGsapReveal(categoriesRef, [cars]);
   useGsapStagger(categoriesRef, ".featured-card", [cars]);
@@ -209,7 +254,7 @@ function Home() {
               </Link>
               <div className="flex items-center text-[12px] font-medium uppercase tracking-[0.25em] text-ghost">
                 <span className="mr-4 h-px w-14 bg-ghost" />
-                Starting at {formatPrice(122000)}
+                Starting at {formatPrice(minPrice)}
               </div>
             </div>
           </div>
@@ -305,13 +350,21 @@ function Home() {
       </section>
 
       {/* ========== WHY CHOOSE US ========== */}
-      <section className="border-y border-onyx/5 bg-ghost px-6 py-40" ref={whyRef}>
-        <div className="mx-auto max-w-7xl">
+      <section
+        className="relative overflow-hidden border-y border-onyx/5 bg-onyx px-6 py-40"
+        ref={whyRef}
+      >
+        {/* Background image with parallax */}
+        <div ref={whyBgRef} className="absolute inset-0 z-0 will-change-transform">
+          <img src={haha} alt="" className="h-full w-full object-cover opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/60 to-onyx/80" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl">
           <div className="mb-20 text-center max-w-3xl mx-auto">
             <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-silver">
               Why Chrono Value Auto
             </p>
-            <h2 className="font-heading text-5xl font-light md:text-6xl leading-tight">
+            <h2 className="font-heading text-5xl font-light md:text-6xl leading-tight text-ghost">
               Built for those who <span className="italic">demand more.</span>
             </h2>
           </div>
@@ -403,8 +456,8 @@ function Home() {
                   </svg>
                 ),
                 title: "Global Reach",
-                desc: "Showrooms in Texas, London, and Milan. White-glove logistics and delivery worldwide.",
-                stats: "3 continents",
+                desc: "Based in Texas with white-glove logistics and delivery available worldwide.",
+                stats: "Delivery Internationally",
               },
             ].map((item) => (
               <div key={item.title} className="why-card group relative">
@@ -412,10 +465,10 @@ function Home() {
                   <span className="absolute right-0 top-8 text-[12px] font-mono text-silver/30 font-medium">
                     {item.number}
                   </span>
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-onyx/5 text-onyx transition-all duration-500 group-hover:bg-onyx group-hover:text-ghost group-hover:scale-105">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-onyx/5 text-white transition-all duration-500 group-hover:bg-onyx group-hover:text-ghost group-hover:scale-105">
                     {item.icon}
                   </div>
-                  <h3 className="font-heading text-2xl font-light tracking-tight group-hover:translate-x-0.5 transition-transform duration-300">
+                  <h3 className="font-heading text-2xl text-white font-light tracking-tight group-hover:translate-x-0.5 transition-transform duration-300">
                     {item.title}
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-silver">{item.desc}</p>
@@ -435,7 +488,7 @@ function Home() {
             </p>
             <Link
               to="/contact"
-              className="group mt-8 inline-flex h-14 items-center gap-4 border border-onyx px-8 text-[12px] font-medium uppercase tracking-[0.25em] hover:bg-onyx hover:text-ghost transition-colors"
+              className="group mt-8 inline-flex h-14 items-center text-white gap-4 border border-white px-8 text-[12px] font-medium uppercase tracking-[0.25em] hover:bg-onyx hover:text-ghost transition-colors"
             >
               Speak With Our Team
               <span className="h-px w-8 bg-current transition-all duration-500 group-hover:w-14" />
