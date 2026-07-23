@@ -5,12 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-onyx: #0F0F0F;
-  --color-silver: #A3A3A3;
-  --color-champagne: #D4CDC3;
-  --color-ghost: #F8F8F8;
-  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-onyx: #0f0f0f;
+  --color-silver: #a3a3a3;
+  --color-champagne: #d4cdc3;
+  --color-ghost: #f8f8f8;
+  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
@@ -41,19 +41,19 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.985 0.002 60);
+  --background: oklch(0.94 0.008 60);
   --foreground: oklch(0.15 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.97 0.005 60);
   --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0 0);
   --primary: oklch(0.15 0 0);
   --primary-foreground: oklch(0.985 0.002 60);
-  --secondary: oklch(0.96 0.005 60);
+  --secondary: oklch(0.94 0.008 60);
   --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.96 0.005 60);
+  --muted: oklch(0.94 0.008 60);
   --muted-foreground: oklch(0.55 0 0);
-  --accent: oklch(0.88 0.02 60);
+  --accent: oklch(0.86 0.015 60);
   --accent-foreground: oklch(0.15 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
@@ -63,22 +63,119 @@
 }
 
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-up-short {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scroll-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(200%); }
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 205, 195, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 205, 195, 0);
+  }
 }
 
 @utility animate-reveal {
   animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-reveal-short {
+  animation: reveal-up-short 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-reveal-left {
+  animation: reveal-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-reveal-right {
+  animation: reveal-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-scale-in {
+  animation: scale-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.6s ease both;
 }
 
 @utility animate-marquee {
@@ -87,6 +184,38 @@
 
 @utility animate-scroll-line {
   animation: scroll-line 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@utility animation-delay-100 {
+  animation-delay: 100ms;
+}
+@utility animation-delay-200 {
+  animation-delay: 200ms;
+}
+@utility animation-delay-300 {
+  animation-delay: 300ms;
+}
+@utility animation-delay-400 {
+  animation-delay: 400ms;
+}
+@utility animation-delay-500 {
+  animation-delay: 500ms;
+}
+@utility animation-delay-600 {
+  animation-delay: 600ms;
+}
+@utility animation-delay-700 {
+  animation-delay: 700ms;
+}
+@utility animation-delay-800 {
+  animation-delay: 800ms;
+}
+@utility animation-delay-1000 {
+  animation-delay: 1000ms;
 }
 
 @layer base {

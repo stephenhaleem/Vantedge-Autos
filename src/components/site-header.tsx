@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useCarLists } from "@/lib/use-car-lists";
 import { Heart, GitCompareArrows, Menu } from "lucide-react";
@@ -15,6 +15,11 @@ const links = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const { shortlistIds, compareIds } = useCarLists();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  // On homepage: transparent nav with white text. On other pages: solid with black text.
+  const isGhost = !isHome || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -26,18 +31,26 @@ export function SiteHeader() {
   return (
     <>
       <nav
-        className={`fixed top-[0px] z-50 w-full border-b transition-all duration-500 ${
-          scrolled
+        className={`fixed top-[0px] z-50 w-full border-b transition-all duration-700 ${
+          isGhost
             ? "border-onyx/10 bg-ghost/85 backdrop-blur-xl"
-            : "border-transparent bg-ghost/60 backdrop-blur-md"
+            : "border-transparent bg-transparent backdrop-blur-sm"
         }`}
       >
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link to="/" className="group flex items-baseline gap-1 sm:gap-2">
-            <span className="font-heading text-xl sm:text-2xl font-semibold uppercase tracking-tighter">
+            <span
+              className={`font-heading text-xl sm:text-2xl font-semibold uppercase tracking-tighter transition-colors ${
+                isGhost ? "text-onyx" : "text-white"
+              }`}
+            >
               Chrono
             </span>
-            <span className="hidden sm:text-[9px] font-medium uppercase tracking-[0.3em] text-silver transition-opacity md:inline-block">
+            <span
+              className={`hidden sm:text-[9px] font-medium uppercase tracking-[0.3em] transition-opacity md:inline-block ${
+                isGhost ? "text-silver" : "text-white/60"
+              }`}
+            >
               Value Auto
             </span>
           </Link>
@@ -47,39 +60,61 @@ export function SiteHeader() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="group relative px-2 lg:px-4 py-2 text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.2em] text-onyx/80 transition-colors hover:text-onyx"
-                activeProps={{ className: "text-onyx" }}
+                className={`group relative px-2 lg:px-4 py-2 text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.2em] transition-colors ${
+                  isGhost ? "text-onyx/80 hover:text-onyx" : "text-white/80 hover:text-white"
+                }`}
+                activeProps={{ className: isGhost ? "text-onyx" : "text-white" }}
               >
                 <span className="relative">
                   {l.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-onyx transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-100" />
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-100 ${
+                      isGhost ? "bg-onyx" : "bg-white"
+                    }`}
+                  />
                 </span>
               </Link>
             ))}
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center gap-1 sm:gap-2 text-[10px] uppercase tracking-[0.25em] text-silver">
+            <div
+              className={`flex items-center gap-1 sm:gap-2 text-[10px] uppercase tracking-[0.25em] ${
+                isGhost ? "text-silver" : "text-white/60"
+              }`}
+            >
               <Link
                 to="/shortlist"
-                className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center text-onyx/80 hover:text-onyx"
+                className={`relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center transition-colors ${
+                  isGhost ? "text-onyx/80 hover:text-onyx" : "text-white/80 hover:text-white"
+                }`}
                 aria-label="Shortlist"
               >
                 <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.5} />
                 {shortlistIds.length > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full bg-onyx text-[8px] sm:text-[9px] text-ghost">
+                  <span
+                    className={`absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full text-[8px] sm:text-[9px] ${
+                      isGhost ? "bg-onyx text-ghost" : "bg-white text-onyx"
+                    }`}
+                  >
                     {shortlistIds.length}
                   </span>
                 )}
               </Link>
               <Link
                 to="/compare"
-                className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center text-onyx/80 hover:text-onyx"
+                className={`relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center transition-colors ${
+                  isGhost ? "text-onyx/80 hover:text-onyx" : "text-white/80 hover:text-white"
+                }`}
                 aria-label="Compare"
               >
                 <GitCompareArrows className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.5} />
                 {compareIds.length > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full bg-onyx text-[8px] sm:text-[9px] text-ghost">
+                  <span
+                    className={`absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full text-[8px] sm:text-[9px] ${
+                      isGhost ? "bg-onyx text-ghost" : "bg-white text-onyx"
+                    }`}
+                  >
                     {compareIds.length}
                   </span>
                 )}
@@ -88,7 +123,9 @@ export function SiteHeader() {
             <Sheet>
               <SheetTrigger asChild>
                 <button
-                  className="flex md:hidden h-8 w-8 sm:h-9 sm:w-9 items-center justify-center text-onyx/80 hover:text-onyx transition-colors"
+                  className={`flex md:hidden h-8 w-8 sm:h-9 sm:w-9 items-center justify-center transition-colors ${
+                    isGhost ? "text-onyx/80 hover:text-onyx" : "text-white/80 hover:text-white"
+                  }`}
                   aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
