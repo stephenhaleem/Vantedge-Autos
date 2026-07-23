@@ -86,9 +86,8 @@ function Inventory() {
       search.make
         ? Array.from(new Set(cars.filter((c) => c.make === search.make).map((c) => c.model))).sort()
         : allModelsBase,
-    [search.make],
+    [search.make, cars, allModelsBase],
   );
-
   const list = useMemo(() => {
     const q = search.q.trim().toLowerCase();
     return cars.filter((c) => {
@@ -101,18 +100,18 @@ function Inventory() {
       if (c.price < search.priceMin || c.price > search.priceMax) return false;
       return true;
     });
-  }, [search]);
+  }, [search, cars]);
+
+  const isYearActive = search.yearMin > yearBounds.min || search.yearMax < yearBounds.max;
+  const isPriceActive = search.priceMin > priceBounds.min || search.priceMax < priceBounds.max;
 
   const activeFilters = [
     search.q && { k: "q", label: `“${search.q}”` },
     search.make && { k: "make", label: search.make },
     search.model && { k: "model", label: search.model },
     search.fuel && { k: "fuel", label: search.fuel },
-    (search.yearMin !== yearBounds.min || search.yearMax !== yearBounds.max) && {
-      k: "year",
-      label: `${search.yearMin} – ${search.yearMax}`,
-    },
-    (search.priceMin !== priceBounds.min || search.priceMax !== priceBounds.max) && {
+    isYearActive && { k: "year", label: `${search.yearMin} – ${search.yearMax}` },
+    isPriceActive && {
       k: "price",
       label: `${formatPrice(search.priceMin)} – ${formatPrice(search.priceMax)}`,
     },
@@ -187,11 +186,11 @@ function Inventory() {
 
         {/* Filter panel */}
         <div
-          className={`transition-all duration-500 ease-out ${
-            panelOpen ? "max-h-[80vh]" : "max-h-0 overflow-hidden"
+          className={`overflow-hidden transition-all duration-500 ease-out ${
+            panelOpen ? "max-h-[70vh]" : "max-h-0"
           }`}
         >
-          <div className="overflow-y-auto border-t border-onyx/10">
+          <div className="max-h-[70vh] overflow-y-auto border-t border-onyx/10">
             <div className="mx-auto max-w-7xl px-6 py-8">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                 <FilterSelect
