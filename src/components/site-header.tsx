@@ -46,7 +46,7 @@ export function SiteHeader() {
               Chrono
             </span>
             <span
-              className={`hidden sm:text-[9px] font-medium uppercase tracking-[0.3em] transition-opacity md:inline-block ${
+              className={`text-[7px] sm:text-[9px] font-medium uppercase tracking-[0.3em] transition-opacity ${
                 isGhost ? "text-silver" : "text-white/60"
               }`}
             >
